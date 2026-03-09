@@ -1,181 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amin Alshehri | Network Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-          --bg: #030712; --card: #111827; --accent: #3b82f6; --accent-glow: rgba(59, 130, 246, 0.5);
-          --text-main: #f9fafb; --text-dim: #9ca3af; --border: rgba(255, 255, 255, 0.1);
-          --font-en: 'Inter', sans-serif; --font-ar: 'Tajawal', sans-serif;
-        }
-        [lang="ar"] { --font-main: var(--font-ar); }
-        [lang="en"] { --font-main: var(--font-en); }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-main); line-height: 1.6; overflow-x: hidden; }
-        
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-        .logo { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
-        .logo span { color: var(--accent); }
-        .lang-btn { background: var(--accent); color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        .lang-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-
-        /* Hero Section */
-        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; background: radial-gradient(circle at center, #1e3a8a 0%, var(--bg) 70%); }
-        .hero-tag { color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
-        h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero-sub { max-width: 700px; color: var(--text-dim); font-size: 1.2rem; margin-bottom: 2.5rem; }
-
-        /* Sections */
-        section { padding: 8rem 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { font-family: 'Syne', sans-serif; font-size: 2.5rem; margin-bottom: 3rem; border-left: 4px solid var(--accent); padding-left: 1.5rem; }
-        [lang="ar"] .section-title { border-left: none; border-right: 4px solid var(--accent); padding-left: 0; padding-right: 1.5rem; }
-
-        /* Timeline Card */
-        .card { background: var(--card); border: 1px solid var(--border); padding: 2rem; border-radius: 16px; margin-bottom: 2rem; transition: 0.3s; }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-        .badge { background: rgba(59, 130, 246, 0.1); color: var(--accent); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
-
-        /* Skills */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .skill-box { background: var(--card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); }
-        .skill-box h3 { margin-bottom: 1rem; color: var(--accent); }
-        .skill-list { list-style: none; color: var(--text-dim); }
-        .skill-list li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .skill-list li::before { content: '→'; color: var(--accent); }
-        [lang="ar"] .skill-list li::before { content: '←'; }
-
-        footer { text-align: center; padding: 4rem 0; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.9rem; }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Amin Alshehri — Network Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050d1a; --bg-2: #071426; --blue: #00aaff; --mint: #00ffb3;
+  --text-hi: #e8f4ff; --text-mid: #7da8cc; --border: rgba(0,170,255,0.18);
+  --font-display: 'Orbitron', sans-serif; --font-body: 'Exo 2', sans-serif;
+}
+html[lang="ar"] { --font-display: 'Tajawal', sans-serif; --font-body: 'Tajawal', sans-serif; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text-hi);overflow-x:hidden;line-height:1.6;}
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 5vw;display:flex;justify-content:space-between;align-items:center;background:rgba(5,13,26,0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.logo{font-family:var(--font-display);font-weight:700;color:var(--text-hi);letter-spacing:1px;}
+.logo span{color:var(--mint);}
+.lang-btn{background:var(--blue);color:#000;border:none;padding:0.4rem 1rem;border-radius:4px;cursor:pointer;font-weight:700;}
+section{padding:8rem 5vw;max-width:1100px;margin:0 auto;}
+.hero{height:100vh;display:flex;align-items:center;background:radial-gradient(circle at center, rgba(0,170,255,0.05) 0%, transparent 70%);}
+.hero-tag{color:var(--mint);font-weight:600;text-transform:uppercase;margin-bottom:1rem;display:block;}
+h1{font-family:var(--font-display);font-size:clamp(2rem,6vw,4.5rem);line-height:1.1;margin-bottom:1.5rem;}
+.card{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;border-radius:8px;margin-bottom:2rem;transition:0.3s;}
+.card:hover{border-color:var(--blue);transform:translateY(-5px);}
+.timeline-date{color:var(--blue);font-weight:600;margin-bottom:0.5rem;display:block;}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:1.5rem;}
+footer{text-align:center;padding:3rem;border-top:1px solid var(--border);color:var(--text-mid);font-size:0.8rem;}
+</style>
 </head>
 <body>
-    <nav>
-        <div class="logo">AMIN<span>.</span></div>
-        <button class="lang-btn" onclick="toggleLang()" id="langBtn">عربي</button>
-    </nav>
 
-    <section id="hero">
-        <div class="hero-tag" data-i18n="hero_tag">Network Engineering Specialist</div>
-        <h1 data-i18n="hero_title">Designing The Future of Network Infrastructure</h1>
-        <p class="hero-sub" data-i18n="hero_sub">Network Engineer at Jeddah Health Cluster. Expert in Cisco infrastructure and mission-critical digital solutions.</p>
-    </section>
+<nav>
+  <div class="logo">AMIN <span>SHEHRI</span></div>
+  <button class="lang-btn" onclick="toggleLang()" id="lBtn">العربية</button>
+</nav>
 
-    <section id="experience">
-        <h2 class="section-title" data-i18n="exp_title">Professional Experience</h2>
-        
-        <div class="card">
-            <div class="card-header">
-                <div>
-                    <h3 data-i18n="exp1_role">Network Engineer</h3>
-                    <p style="color:var(--text-dim)" data-i18n="exp1_org">Jeddah Health Cluster</p>
-                </div>
-                <span class="badge" data-i18n="exp1_date">March 2026 - Present</span>
-            </div>
-            <ul class="skill-list">
-                <li data-i18n="exp1_d1">Configuring Cisco Catalyst switches and routers for high-availability environments.</li>
-                <li data-i18n="exp1_d2">Troubleshooting complex L2/L3 connectivity (OSPF, VLANs, STP).</li>
-                <li data-i18n="exp1_d3">Securing medical data traffic through advanced ACLs and port security.</li>
-            </ul>
-        </div>
+<section class="hero">
+  <div>
+    <span class="hero-tag" data-i18n="h_tag">Network Engineer · Jeddah Health Cluster</span>
+    <h1 data-i18n="h_title">Building Scalable & Secure Networks</h1>
+    <p style="color:var(--text-mid); max-width:600px; margin-bottom:2rem;" data-i18n="h_sub">Currently designing and securing mission-critical Cisco infrastructures at Jeddah Health Cluster.</p>
+    <a href="#experience" style="background:var(--blue); color:#000; padding:0.8rem 2rem; text-decoration:none; border-radius:4px; font-weight:700;" data-i18n="h_cta">Experience</a>
+  </div>
+</section>
 
-        <div class="card">
-            <div class="card-header">
-                <div>
-                    <h3 data-i18n="exp2_role">IT Intern</h3>
-                    <p style="color:var(--text-dim)" data-i18n="exp2_org">Tabuk Health Cluster</p>
-                </div>
-                <span class="badge">2023 - 2024</span>
-            </div>
-            <p data-i18n="exp2_desc">Managed support for 100+ devices and implemented network simulations with 100% data recovery success.</p>
-        </div>
-    </section>
+<section id="experience">
+  <h2 style="font-family:var(--font-display); margin-bottom:3rem;" data-i18n="e_title">Career Path</h2>
+  <div class="card">
+    <span class="timeline-date" data-i18n="e1_date">March 2026 – Present</span>
+    <h3 data-i18n="e1_role">Network Engineer</h3>
+    <p style="color:var(--mint); margin-bottom:1rem;" data-i18n="e1_org">Jeddah Health Cluster</p>
+    <ul style="color:var(--text-mid); padding-left:1.5rem;" data-i18n="e1_list">
+      <li>Configuring Cisco Catalyst switches and routers for high availability.</li>
+      <li>Troubleshooting L2/L3 issues (VLANs, STP, Static/Dynamic Routing).</li>
+      <li>Implementing ACLs and port security for healthcare data protection.</li>
+    </ul>
+  </div>
+</section>
 
-    <section id="skills">
-        <h2 class="section-title" data-i18n="skills_title">Technical Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-box">
-                <h3 data-i18n="sk1_title">Networking & Switching</h3>
-                <ul class="skill-list">
-                    <li>Cisco IOS & Packet Tracer</li>
-                    <li>OSPF & Dynamic Routing</li>
-                    <li>VLANs, STP & EtherChannel</li>
-                </ul>
-            </div>
-            <div class="skill-box">
-                <h3 data-i18n="sk2_title">Network Security</h3>
-                <ul class="skill-list">
-                    <li>Access Control Lists (ACLs)</li>
-                    <li>Infrastructure Hardening</li>
-                    <li>VPN Fundamentals</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+<section id="skills">
+  <h2 style="font-family:var(--font-display); margin-bottom:3rem;" data-i18n="s_title">Skills Matrix</h2>
+  <div class="skills-grid">
+    <div class="card">
+      <h3 style="color:var(--blue); margin-bottom:1rem;" data-i18n="s1_t">Networking</h3>
+      <p style="color:var(--text-mid);">Cisco IOS, Routing & Switching, VLANs, STP, OSPF, TCP/IP.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--mint); margin-bottom:1rem;" data-i18n="s2_t">Security</h3>
+      <p style="color:var(--text-mid);">ACLs, Firewalls, VPN Fundamentals, Backup & Recovery (100% success rate).</p>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <p data-i18n="footer">© 2026 Amin Alshehri — CCNA Candidate | 1st Place ETRA Bootcamp</p>
-    </footer>
+<footer>
+  <p data-i18n="f_copy">© 2026 Amin Alshehri — CCNA Candidate | 1st Place ETRA Bootcamp</p>
+</footer>
 
-    <script>
-        const T = {
-            en: {
-                hero_tag: "Network Engineering Specialist",
-                hero_title: "Designing The Future of Network Infrastructure",
-                hero_sub: "Network Engineer at Jeddah Health Cluster. Expert in Cisco infrastructure and mission-critical digital solutions.",
-                exp_title: "Professional Experience",
-                exp1_role: "Network Engineer",
-                exp1_org: "Jeddah Health Cluster",
-                exp1_date: "March 2026 - Present",
-                exp1_d1: "Configuring Cisco Catalyst switches and routers for high-availability environments.",
-                exp1_d2: "Troubleshooting complex L2/L3 connectivity (OSPF, VLANs, STP).",
-                exp1_d3: "Securing medical data traffic through advanced ACLs and port security.",
-                exp2_role: "IT Intern",
-                exp2_org: "Tabuk Health Cluster",
-                exp2_desc: "Managed support for 100+ devices and implemented network simulations with 100% data recovery success.",
-                skills_title: "Technical Expertise",
-                sk1_title: "Networking & Switching",
-                sk2_title: "Network Security",
-                footer: "© 2026 Amin Alshehri — CCNA Candidate | 1st Place ETRA Bootcamp"
-            },
-            ar: {
-                hero_tag: "أخصائي هندسة الشبكات",
-                hero_title: "تصميم مستقبل البنية التحتية للشبكات الرقمية",
-                hero_sub: "مهندس شبكات في تجمع جدة الصحي. خبير في أنظمة سيسكو والحلول الرقمية لبيئات العمل الحساسة.",
-                exp_title: "الخبرة المهنية",
-                exp1_role: "مهندس شبكات",
-                exp1_org: "تجمع جدة الصحي",
-                exp1_date: "مارس 2026 - الآن",
-                exp1_d1: "برمجة وإدارة مبدلات (Switches) وراوترات سيسكو لضمان استمرارية الخدمة.",
-                exp1_d2: "تشخيص وإصلاح أعطال الربط في الطبقتين الثانية والثالثة (OSPF, VLANs, STP).",
-                exp1_d3: "تأمين حركة بيانات الأنظمة الصحية عبر بروتوكولات ACLs وحماية المنافذ.",
-                exp2_role: "متدرب تقني",
-                exp2_org: "تجمع تبوك الصحي",
-                exp2_desc: "دعم أكثر من 100 جهاز تقني وتنفيذ عمليات محاكاة الشبكات مع نجاح استعادة البيانات بنسبة 100%.",
-                skills_title: "الخبرات التقنية",
-                sk1_title: "توجيه وتبديل الشبكات",
-                sk2_title: "أمن الشبكات",
-                footer: "© 2026 أمين الشهري — مرشح لشهادة CCNA | المركز الأول في معسكر ETRA"
-            }
-        };
-
-        let currentLang = 'en';
-        function toggleLang() {
-            currentLang = currentLang === 'en' ? 'ar' : 'en';
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langBtn').innerText = currentLang === 'en' ? 'عربي' : 'English';
-            
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                el.innerHTML = T[currentLang][key];
-            });
-        }
-    </script>
+<script>
+const T = {
+  en: {
+    h_tag: "Network Engineer · Jeddah Health Cluster", h_title: "Building Scalable & Secure Networks", h_sub: "Currently designing and securing mission-critical Cisco infrastructures at Jeddah Health Cluster.", h_cta: "View Experience",
+    e_title: "Career Path", e1_date: "March 2026 – Present", e1_role: "Network Engineer", e1_org: "Jeddah Health Cluster", e1_list: "<li>Configuring Cisco Catalyst switches and routers.</li><li>Troubleshooting L2/L3 issues.</li><li>Implementing ACLs for data protection.</li>",
+    s_title: "Skills Matrix", s1_t: "Networking", s2_t: "Security", f_copy: "© 2026 Amin Alshehri — CCNA Candidate | 1st Place ETRA Bootcamp"
+  },
+  ar: {
+    h_tag: "مهندس شبكات · تجمع جدة الصحي", h_title: "بناء شبكات آمنة وقابلة للتوسع", h_sub: "أقوم حالياً بتصميم وتأمين البنى التحتية التقنية لشبكات سيسكو الحيوية في تجمع جدة الصحي.", h_cta: "استعرض الخبرة",
+    e_title: "المسار المهني", e1_date: "مارس 2026 – حتى الآن", e1_role: "مهندس شبكات", e1_org: "تجمع جدة الصحي", e1_list: "<li>تهيئة وصيانة مفاتيح وراوترات سيسكو لضمان التوافر العالي.</li><li>تشخيص أعطال الشبكات في الطبقتين الثانية والثالثة.</li><li>تطبيق قوائم التحكم في الوصول (ACLs) لحماية البيانات الصحية.</li>",
+    s_title: "مصفوفة المهارات", s1_t: "هندسة الشبكات", s2_t: "أمن الشبكات", f_copy: "© 2026 أمين الشهري — مرشح CCNA | المركز الأول في معسكر ETRA"
+  }
+};
+let lang = 'en';
+function toggleLang() {
+  lang = (lang === 'en') ? 'ar' : 'en';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.getElementById('lBtn').innerText = (lang === 'en') ? 'العربية' : 'English';
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = T[lang][el.getAttribute('data-i18n')]; });
+}
+</script>
 </body>
 </html>
