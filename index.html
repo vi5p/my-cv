@@ -6,100 +6,1152 @@
 <title>Amin Alshehri — Network Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════
+   CSS VARIABLES — CYBER-PROFESSIONAL PALETTE
+═══════════════════════════════════════════════ */
 :root {
-  --bg: #050d1a; --bg-2: #071426; --blue: #00aaff; --mint: #00ffb3;
-  --text-hi: #e8f4ff; --text-mid: #7da8cc; --border: rgba(0,170,255,0.18);
-  --font-display: 'Orbitron', sans-serif; --font-body: 'Exo 2', sans-serif;
+  --bg:          #050d1a;
+  --bg-2:        #071426;
+  --bg-panel:    rgba(6,20,45,0.75);
+  --blue:        #00aaff;
+  --blue-dim:    rgba(0,170,255,0.15);
+  --blue-glow:   rgba(0,170,255,0.35);
+  --mint:        #00ffb3;
+  --mint-dim:    rgba(0,255,179,0.12);
+  --mint-glow:   rgba(0,255,179,0.3);
+  --warn:        #ff6b35;
+  --text-hi:     #e8f4ff;
+  --text-mid:    #7da8cc;
+  --text-lo:     #3a5878;
+  --border:      rgba(0,170,255,0.18);
+  --border-mint: rgba(0,255,179,0.18);
+  --glass:       rgba(5,18,38,0.7);
+  --font-display:'Orbitron',monospace;
+  --font-mono:   'Share Tech Mono',monospace;
+  --font-body:   'Exo 2',sans-serif;
 }
-html[lang="ar"] { --font-display: 'Tajawal', sans-serif; --font-body: 'Tajawal', sans-serif; }
+html[lang="ar"] {
+  --font-display:'Tajawal',sans-serif;
+  --font-mono:   'Tajawal',sans-serif;
+  --font-body:   'Tajawal',sans-serif;
+}
+
+/* ═══════════════════════════════════════════════  RESET */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text-hi);overflow-x:hidden;line-height:1.6;}
-nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 5vw;display:flex;justify-content:space-between;align-items:center;background:rgba(5,13,26,0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
-.logo{font-family:var(--font-display);font-weight:700;color:var(--text-hi);letter-spacing:1px;}
-.logo span{color:var(--mint);}
-.lang-btn{background:var(--blue);color:#000;border:none;padding:0.4rem 1rem;border-radius:4px;cursor:pointer;font-weight:700;}
-section{padding:8rem 5vw;max-width:1100px;margin:0 auto;}
-.hero{height:100vh;display:flex;align-items:center;background:radial-gradient(circle at center, rgba(0,170,255,0.05) 0%, transparent 70%);}
-.hero-tag{color:var(--mint);font-weight:600;text-transform:uppercase;margin-bottom:1rem;display:block;}
-h1{font-family:var(--font-display);font-size:clamp(2rem,6vw,4.5rem);line-height:1.1;margin-bottom:1.5rem;}
-.card{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:2rem;border-radius:8px;margin-bottom:2rem;transition:0.3s;}
-.card:hover{border-color:var(--blue);transform:translateY(-5px);}
-.timeline-date{color:var(--blue);font-weight:600;margin-bottom:0.5rem;display:block;}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:1.5rem;}
-footer{text-align:center;padding:3rem;border-top:1px solid var(--border);color:var(--text-mid);font-size:0.8rem;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text-hi);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ═══════════════════════════════════════════════
+   BACKGROUND — ANIMATED CIRCUIT GRID
+═══════════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(0,170,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,170,255,0.04) 1px,transparent 1px);
+  background-size:48px 48px;
+  animation:gridDrift 60s linear infinite;
+}
+@keyframes gridDrift{to{background-position:48px 48px;}}
+
+/* radial glows fixed */
+.bg-glow-1{position:fixed;top:-15%;right:-10%;width:55vw;height:55vw;background:radial-gradient(circle,rgba(0,170,255,0.07) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.bg-glow-2{position:fixed;bottom:-15%;left:-10%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(0,255,179,0.05) 0%,transparent 65%);pointer-events:none;z-index:0;}
+
+/* ═══════════════════════════════════════════════  CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--mint);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s,background .2s;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid var(--blue);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6;transition:opacity .3s;}
+
+/* ═══════════════════════════════════════════════  SCAN LINE */
+.scanline{position:fixed;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.4;animation:scan 8s linear infinite;pointer-events:none;z-index:9990;}
+@keyframes scan{0%{top:-2px;}100%{top:100vh;}}
+
+/* ═══════════════════════════════════════════════  NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:1rem 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(5,13,26,0.88);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:var(--font-display);
+  font-size:.95rem;font-weight:700;letter-spacing:.15em;
+  color:var(--text-hi);display:flex;align-items:center;gap:.6rem;
+}
+html[lang="ar"] .nav-logo{letter-spacing:0;font-size:1rem;}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.nav-links{display:flex;gap:1.75rem;list-style:none;}
+.nav-links a{
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;
+  color:var(--text-mid);text-decoration:none;text-transform:uppercase;
+  transition:color .2s;position:relative;
+}
+html[lang="ar"] .nav-links a{letter-spacing:0;text-transform:none;font-size:.85rem;font-family:var(--font-body);}
+.nav-links a::before{content:'//';margin-right:.3rem;color:var(--blue);opacity:0;transition:opacity .2s;}
+html[lang="ar"] .nav-links a::before{display:none;}
+.nav-links a:hover{color:var(--blue);}
+.nav-links a:hover::before{opacity:1;}
+
+/* LANG TOGGLE */
+.lang-toggle{display:flex;background:rgba(0,170,255,0.06);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.lang-btn{
+  font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem .8rem;border:none;background:transparent;
+  color:var(--text-lo);cursor:none;transition:all .2s;
+}
+.lang-btn.active{background:var(--blue);color:#000;font-weight:700;}
+.lang-btn:not(.active):hover{color:var(--blue);}
+
+/* ═══════════════════════════════════════════════
+   SECTIONS SHARED
+═══════════════════════════════════════════════ */
+section{position:relative;z-index:2;}
+.section-inner{max-width:1160px;margin:0 auto;padding:7rem 5vw;}
+
+.sec-eyebrow{
+  font-family:var(--font-mono);font-size:.65rem;letter-spacing:.25em;
+  color:var(--mint);text-transform:uppercase;
+  display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;
+}
+html[lang="ar"] .sec-eyebrow{letter-spacing:0;text-transform:none;font-size:.82rem;font-family:var(--font-body);}
+.sec-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--mint);}
+.sec-eyebrow::after{content:'';display:block;width:8px;height:8px;border:1px solid var(--mint);transform:rotate(45deg);}
+.sec-title{
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(1.8rem,3.5vw,3rem);letter-spacing:-.01em;
+  line-height:1.1;margin-bottom:1rem;
+}
+html[lang="ar"] .sec-title{letter-spacing:0;line-height:1.25;font-family:var(--font-body);font-size:clamp(1.8rem,3.5vw,2.8rem);}
+.sec-desc{font-size:.95rem;color:var(--text-mid);max-width:540px;line-height:1.85;margin-bottom:4rem;}
+html[lang="ar"] .sec-desc{line-height:2.1;}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+#hero{min-height:100vh;display:flex;align-items:center;padding:9rem 5vw 5rem;overflow:hidden;}
+.hero-content{max-width:820px;position:relative;z-index:3;}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--font-mono);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mint);border:1px solid var(--border-mint);border-radius:3px;
+  padding:.4rem 1rem;margin-bottom:2rem;
+  background:var(--mint-dim);
+  opacity:0;animation:fadeUp .7s .1s forwards;
+}
+html[lang="ar"] .hero-badge{letter-spacing:0;text-transform:none;font-size:.82rem;font-family:var(--font-body);}
+.hero-badge .blink{width:6px;height:6px;border-radius:50%;background:var(--mint);animation:pulse 1.4s infinite;}
+
+.hero-name{
+  font-family:var(--font-display);font-weight:900;
+  font-size:clamp(.9rem,1.8vw,1.2rem);letter-spacing:.3em;
+  color:var(--blue);text-transform:uppercase;margin-bottom:.75rem;
+  opacity:0;animation:fadeUp .7s .2s forwards;
+}
+html[lang="ar"] .hero-name{letter-spacing:0;font-family:var(--font-body);font-size:1.1rem;}
+
+.hero-headline{
+  font-family:var(--font-display);font-weight:900;
+  font-size:clamp(2.4rem,6vw,5.5rem);
+  line-height:1.0;letter-spacing:-.03em;margin-bottom:1.5rem;
+  opacity:0;animation:fadeUp .8s .35s forwards;
+}
+html[lang="ar"] .hero-headline{letter-spacing:0;line-height:1.2;font-family:var(--font-body);font-weight:800;font-size:clamp(2rem,5vw,4.5rem);}
+.hero-headline .accent{color:var(--blue);}
+.hero-headline .accent-2{color:var(--mint);}
+
+.hero-sub{
+  font-size:1rem;color:var(--text-mid);max-width:560px;line-height:1.9;margin-bottom:2.5rem;
+  opacity:0;animation:fadeUp .8s .5s forwards;
+}
+html[lang="ar"] .hero-sub{line-height:2.1;font-size:1rem;}
+
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .65s forwards;}
+
+.btn-cyber{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.85rem 2rem;background:var(--blue);color:#000;
+  border:none;border-radius:3px;text-decoration:none;font-weight:700;
+  cursor:none;transition:all .25s;position:relative;overflow:hidden;
+}
+html[lang="ar"] .btn-cyber{letter-spacing:0;text-transform:none;font-size:.9rem;font-family:var(--font-body);}
+.btn-cyber::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .4s;}
+.btn-cyber:hover{background:#fff;transform:translateY(-2px);box-shadow:0 0 30px var(--blue-glow);}
+.btn-cyber:hover::before{transform:translateX(100%);}
+
+.btn-outline{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.85rem 2rem;background:transparent;color:var(--mint);
+  border:1px solid var(--border-mint);border-radius:3px;text-decoration:none;
+  cursor:none;transition:all .25s;
+}
+html[lang="ar"] .btn-outline{letter-spacing:0;text-transform:none;font-size:.9rem;font-family:var(--font-body);}
+.btn-outline:hover{background:var(--mint-dim);transform:translateY(-2px);box-shadow:0 0 20px var(--mint-glow);}
+
+/* HERO STATS BAR */
+.hero-stats{
+  display:flex;gap:0;margin-top:4rem;
+  border:1px solid var(--border);border-radius:6px;overflow:hidden;
+  opacity:0;animation:fadeUp .8s .8s forwards;
+  max-width:600px;
+}
+.hstat{
+  flex:1;padding:1.1rem 1.25rem;border-right:1px solid var(--border);
+  position:relative;
+}
+.hstat:last-child{border-right:none;}
+.hstat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--mint));opacity:0;transition:opacity .3s;}
+.hstat:hover::before{opacity:1;}
+.hstat-num{font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--text-hi);}
+html[lang="ar"] .hstat-num{font-family:var(--font-body);}
+.hstat-num span{color:var(--blue);}
+.hstat-lbl{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.14em;color:var(--text-lo);text-transform:uppercase;margin-top:.2rem;}
+html[lang="ar"] .hstat-lbl{letter-spacing:0;text-transform:none;font-size:.75rem;font-family:var(--font-body);}
+
+/* HERO DECORATIVE TERMINAL */
+.hero-terminal{
+  position:absolute;right:2vw;top:50%;transform:translateY(-50%);
+  width:280px;background:var(--bg-panel);
+  border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  opacity:0;animation:fadeUp .9s .9s forwards;
+  display:none;
+}
+@media(min-width:1100px){.hero-terminal{display:block;}}
+.term-bar{padding:.5rem .75rem;background:rgba(0,170,255,.08);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.4rem;}
+.term-dot{width:8px;height:8px;border-radius:50%;}
+.term-body{padding:1rem .75rem;font-family:var(--font-mono);font-size:.65rem;line-height:1.9;color:var(--text-mid);}
+.term-body .c-blue{color:var(--blue);}
+.term-body .c-mint{color:var(--mint);}
+.term-body .c-warn{color:var(--warn);}
+.term-cursor{display:inline-block;width:7px;height:1em;background:var(--mint);vertical-align:middle;animation:blink .8s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* ═══════════════════════════════════════════════
+   EXPERIENCE — INTERACTIVE TIMELINE
+═══════════════════════════════════════════════ */
+#experience{background:var(--bg-2);}
+.timeline{position:relative;padding-left:2.5rem;}
+html[lang="ar"] .timeline{padding-left:0;padding-right:2.5rem;}
+.timeline::before{
+  content:'';position:absolute;left:.75rem;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--blue),var(--mint),transparent);
+}
+html[lang="ar"] .timeline::before{left:auto;right:.75rem;}
+
+.tl-item{position:relative;padding:0 0 3rem 2.5rem;cursor:default;}
+html[lang="ar"] .tl-item{padding:0 2.5rem 3rem 0;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-node{
+  position:absolute;left:-1.75rem;top:.3rem;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--blue);border:3px solid var(--bg-2);
+  box-shadow:0 0 16px var(--blue-glow);
+  transition:transform .3s;
+}
+html[lang="ar"] .tl-node{left:auto;right:-1.75rem;}
+.tl-node.current{background:var(--mint);box-shadow:0 0 20px var(--mint-glow);}
+.tl-item:hover .tl-node{transform:scale(1.4);}
+
+.tl-period{
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.18em;
+  color:var(--blue);text-transform:uppercase;margin-bottom:.4rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+html[lang="ar"] .tl-period{letter-spacing:0;text-transform:none;font-size:.78rem;font-family:var(--font-body);}
+.tl-period .badge{
+  font-size:.55rem;padding:.15rem .5rem;background:var(--mint-dim);
+  border:1px solid var(--border-mint);border-radius:2px;color:var(--mint);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+html[lang="ar"] .tl-period .badge{letter-spacing:0;text-transform:none;font-size:.72rem;}
+
+.tl-role{font-family:var(--font-display);font-size:1.15rem;font-weight:700;margin-bottom:.2rem;}
+html[lang="ar"] .tl-role{font-family:var(--font-body);font-weight:700;letter-spacing:0;}
+.tl-org{font-size:.88rem;color:var(--text-mid);margin-bottom:1rem;}
+
+.tl-card{
+  background:var(--glass);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;
+  backdrop-filter:blur(12px);position:relative;overflow:hidden;
+  transition:border-color .3s,box-shadow .3s;
+}
+.tl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--mint));opacity:0;transition:opacity .3s;}
+.tl-item:hover .tl-card{border-color:rgba(0,170,255,.35);box-shadow:0 8px 32px rgba(0,0,0,.4);}
+.tl-item:hover .tl-card::before{opacity:1;}
+.tl-card ul{padding-left:1.1rem;}
+html[lang="ar"] .tl-card ul{padding-left:0;padding-right:1.1rem;}
+.tl-card li{font-size:.88rem;color:var(--text-mid);line-height:1.75;margin-bottom:.35rem;}
+html[lang="ar"] .tl-card li{line-height:2;font-size:.92rem;}
+.tl-card li::marker{color:var(--blue);}
+.tl-card p{font-size:.88rem;color:var(--text-mid);line-height:1.8;}
+html[lang="ar"] .tl-card p{line-height:2.1;font-size:.92rem;}
+
+/* ═══════════════════════════════════════════════
+   SKILLS MATRIX
+═══════════════════════════════════════════════ */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+@media(max-width:768px){.skills-grid{grid-template-columns:1fr;}}
+
+.skill-group{background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:2rem;backdrop-filter:blur(12px);}
+.skill-group-title{
+  font-family:var(--font-display);font-size:.8rem;font-weight:700;letter-spacing:.18em;
+  color:var(--mint);text-transform:uppercase;margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+html[lang="ar"] .skill-group-title{letter-spacing:0;text-transform:none;font-size:.92rem;font-family:var(--font-body);}
+.skill-group-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-mint),transparent);}
+
+.skill-item{margin-bottom:1.1rem;}
+.skill-header{display:flex;justify-content:space-between;margin-bottom:.45rem;}
+.skill-name{font-family:var(--font-mono);font-size:.78rem;color:var(--text-hi);}
+html[lang="ar"] .skill-name{font-family:var(--font-body);font-size:.88rem;}
+.skill-pct{font-family:var(--font-mono);font-size:.7rem;color:var(--blue);}
+.skill-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--mint));transform:scaleX(0);transform-origin:left;animation:grow 1.2s cubic-bezier(.16,1,.3,1) forwards;}
+html[lang="ar"] .skill-fill{transform-origin:right;}
+@keyframes grow{to{transform:scaleX(1);}}
+
+/* tech tag cloud */
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem;}
+.tcg{
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.3rem .7rem;border:1px solid var(--border);border-radius:3px;
+  color:var(--text-mid);transition:all .2s;
+}
+html[lang="ar"] .tcg{letter-spacing:0;text-transform:none;font-size:.75rem;font-family:var(--font-body);}
+.tcg:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+.tcg.hl{border-color:var(--border-mint);color:var(--mint);background:var(--mint-dim);}
+
+/* Soft skills grid */
+.soft-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.soft-item{
+  font-size:.82rem;color:var(--text-mid);
+  background:rgba(0,170,255,.04);border:1px solid var(--border);
+  border-radius:5px;padding:.65rem .9rem;
+  display:flex;align-items:center;gap:.6rem;
+  transition:border-color .2s;
+}
+html[lang="ar"] .soft-item{font-size:.88rem;}
+.soft-item:hover{border-color:var(--blue);}
+.soft-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--mint);flex-shrink:0;}
+
+/* ═══════════════════════════════════════════════
+   ACHIEVEMENT HIGHLIGHT
+═══════════════════════════════════════════════ */
+#achievement{background:var(--bg-2);}
+.ach-card{
+  background:var(--glass);border:1px solid var(--border-mint);border-radius:12px;
+  padding:3rem;backdrop-filter:blur(16px);position:relative;overflow:hidden;
+  display:flex;align-items:center;gap:3rem;flex-wrap:wrap;
+}
+.ach-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,255,179,.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+.ach-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--mint),transparent);
+}
+.ach-rank{
+  font-family:var(--font-display);font-size:5rem;font-weight:900;
+  color:var(--mint);text-shadow:0 0 40px var(--mint-glow);
+  flex-shrink:0;line-height:1;
+}
+html[lang="ar"] .ach-rank{font-family:var(--font-body);}
+.ach-text{}
+.ach-label{
+  font-family:var(--font-mono);font-size:.65rem;letter-spacing:.2em;
+  color:var(--mint);text-transform:uppercase;margin-bottom:.5rem;
+}
+html[lang="ar"] .ach-label{letter-spacing:0;text-transform:none;font-size:.82rem;font-family:var(--font-body);}
+.ach-title{font-family:var(--font-display);font-size:1.5rem;font-weight:800;margin-bottom:.5rem;}
+html[lang="ar"] .ach-title{font-family:var(--font-body);letter-spacing:0;}
+.ach-desc{font-size:.9rem;color:var(--text-mid);line-height:1.8;max-width:500px;}
+html[lang="ar"] .ach-desc{line-height:2.1;}
+.ach-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;}
+.ach-chip{
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;
+  padding:.3rem .8rem;border:1px solid var(--border-mint);border-radius:3px;
+  color:var(--mint);background:var(--mint-dim);
+}
+html[lang="ar"] .ach-chip{letter-spacing:0;font-family:var(--font-body);font-size:.78rem;}
+
+/* ═══════════════════════════════════════════════
+   PROJECTS
+═══════════════════════════════════════════════ */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+.proj-card{
+  background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:1.75rem;
+  backdrop-filter:blur(12px);transition:all .3s cubic-bezier(.25,.46,.45,.94);
+  position:relative;overflow:hidden;
+}
+.proj-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,170,255,.04),transparent);opacity:0;transition:opacity .3s;}
+.proj-card:hover{border-color:rgba(0,170,255,.4);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.5);}
+.proj-card:hover::after{opacity:1;}
+.proj-num{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.18em;color:var(--text-lo);text-transform:uppercase;margin-bottom:.75rem;}
+html[lang="ar"] .proj-num{letter-spacing:0;text-transform:none;font-size:.74rem;font-family:var(--font-body);}
+.proj-title{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:.6rem;line-height:1.35;}
+html[lang="ar"] .proj-title{font-family:var(--font-body);letter-spacing:0;line-height:1.55;}
+.proj-desc{font-size:.82rem;color:var(--text-mid);line-height:1.75;margin-bottom:1.25rem;}
+html[lang="ar"] .proj-desc{line-height:2;font-size:.88rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.ptag{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.06em;padding:.25rem .55rem;background:var(--blue-dim);border:1px solid rgba(0,170,255,.25);border-radius:2px;color:var(--blue);text-transform:uppercase;}
+html[lang="ar"] .ptag{letter-spacing:0;text-transform:none;font-size:.72rem;font-family:var(--font-body);}
+
+/* ═══════════════════════════════════════════════
+   EDUCATION & CERTS
+═══════════════════════════════════════════════ */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+@media(max-width:768px){.edu-grid{grid-template-columns:1fr;}}
+.edu-card{background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:1.75rem;backdrop-filter:blur(12px);}
+.edu-label{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.2em;color:var(--blue);text-transform:uppercase;margin-bottom:.75rem;}
+html[lang="ar"] .edu-label{letter-spacing:0;text-transform:none;font-size:.78rem;font-family:var(--font-body);}
+.edu-degree{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:.3rem;}
+html[lang="ar"] .edu-degree{font-family:var(--font-body);letter-spacing:0;}
+.edu-inst{font-size:.85rem;color:var(--text-mid);margin-bottom:1rem;}
+.cert-list{display:flex;flex-direction:column;gap:.6rem;}
+.cert-item{
+  display:flex;align-items:flex-start;gap:.75rem;
+  font-size:.82rem;color:var(--text-mid);line-height:1.6;
+  padding:.6rem .8rem;background:rgba(0,170,255,.03);
+  border:1px solid var(--border);border-radius:5px;
+}
+html[lang="ar"] .cert-item{font-size:.88rem;line-height:1.8;}
+.cert-icon{color:var(--blue);flex-shrink:0;font-size:.8rem;}
+.cert-item.pending .cert-icon{color:var(--warn);}
+.cert-item strong{color:var(--text-hi);}
+
+/* COURSES */
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin-top:2rem;}
+.course-card{
+  background:var(--glass);border:1px solid var(--border);border-radius:7px;
+  padding:.9rem 1rem;backdrop-filter:blur(8px);transition:border-color .2s;
+}
+.course-card:hover{border-color:var(--blue);}
+.course-name{font-size:.82rem;color:var(--text-hi);margin-bottom:.3rem;}
+html[lang="ar"] .course-name{font-size:.88rem;}
+.course-meta{font-family:var(--font-mono);font-size:.6rem;color:var(--text-lo);letter-spacing:.06em;}
+html[lang="ar"] .course-meta{letter-spacing:0;font-family:var(--font-body);font-size:.74rem;}
+
+/* ═══════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════ */
+#contact{background:var(--bg-2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info p{font-size:.92rem;color:var(--text-mid);line-height:1.9;margin-bottom:2rem;}
+html[lang="ar"] .contact-info p{line-height:2.2;}
+.contact-links{display:flex;flex-direction:column;gap:.75rem;}
+.clink{
+  display:flex;align-items:center;gap:.9rem;text-decoration:none;
+  color:var(--text-mid);font-size:.85rem;padding:.85rem 1rem;
+  border:1px solid var(--border);border-radius:7px;transition:all .25s;cursor:none;
+}
+html[lang="ar"] .clink{font-size:.9rem;}
+.clink:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);transform:translateX(5px);}
+html[lang="ar"] .clink:hover{transform:translateX(-5px);}
+.clink-icon{width:34px;height:34px;background:var(--blue-dim);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
+.contact-form{display:flex;flex-direction:column;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:.4rem;}
+.form-label{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-lo);text-transform:uppercase;}
+html[lang="ar"] .form-label{letter-spacing:0;text-transform:none;font-size:.78rem;font-family:var(--font-body);}
+.form-input,.form-textarea{
+  background:rgba(0,170,255,.03);border:1px solid var(--border);border-radius:6px;
+  padding:.8rem 1rem;color:var(--text-hi);font-family:var(--font-body);font-size:.88rem;
+  outline:none;resize:none;transition:border-color .2s,box-shadow .2s;
+}
+html[lang="ar"] .form-input,html[lang="ar"] .form-textarea{text-align:right;}
+.form-input:focus,.form-textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-dim);}
+.form-textarea{min-height:110px;}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer{
+  padding:2rem 5vw;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:2;
+}
+.ft-copy{font-family:var(--font-mono);font-size:.62rem;color:var(--text-lo);letter-spacing:.08em;}
+html[lang="ar"] .ft-copy{letter-spacing:0;font-family:var(--font-body);font-size:.78rem;}
+.ft-top{font-family:var(--font-mono);font-size:.62rem;color:var(--text-lo);text-decoration:none;letter-spacing:.08em;cursor:none;transition:color .2s;}
+html[lang="ar"] .ft-top{letter-spacing:0;font-family:var(--font-body);font-size:.78rem;}
+.ft-top:hover{color:var(--blue);}
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hero-stats{max-width:100%;}
+}
+@media(max-width:600px){
+  .hero-headline{font-size:2.2rem;}
+  .ach-card{flex-direction:column;gap:1.5rem;}
+  .ach-rank{font-size:3.5rem;}
+}
 </style>
 </head>
 <body>
 
+<div class="bg-glow-1"></div>
+<div class="bg-glow-2"></div>
+<div class="scanline"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- ══ NAV ══════════════════════════════════════ -->
 <nav>
-  <div class="logo">AMIN <span>SHEHRI</span></div>
-  <button class="lang-btn" onclick="toggleLang()" id="lBtn">العربية</button>
+  <div class="nav-logo">
+    <div class="dot"></div>
+    <span id="navLogoText">A.ALSHEHRI</span>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#experience" data-i18n="nav.exp">Experience</a></li>
+      <li><a href="#skills"     data-i18n="nav.sk">Skills</a></li>
+      <li><a href="#achievement"data-i18n="nav.ach">Achievement</a></li>
+      <li><a href="#projects"   data-i18n="nav.proj">Projects</a></li>
+      <li><a href="#education"  data-i18n="nav.edu">Education</a></li>
+      <li><a href="#contact"    data-i18n="nav.ct">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        id="btnAr" onclick="setLang('ar')">عربي</button>
+    </div>
+  </div>
 </nav>
 
-<section class="hero">
-  <div>
-    <span class="hero-tag" data-i18n="h_tag">Network Engineer · Jeddah Health Cluster</span>
-    <h1 data-i18n="h_title">Building Scalable & Secure Networks</h1>
-    <p style="color:var(--text-mid); max-width:600px; margin-bottom:2rem;" data-i18n="h_sub">Currently designing and securing mission-critical Cisco infrastructures at Jeddah Health Cluster.</p>
-    <a href="#experience" style="background:var(--blue); color:#000; padding:0.8rem 2rem; text-decoration:none; border-radius:4px; font-weight:700;" data-i18n="h_cta">Experience</a>
-  </div>
-</section>
-
-<section id="experience">
-  <h2 style="font-family:var(--font-display); margin-bottom:3rem;" data-i18n="e_title">Career Path</h2>
-  <div class="card">
-    <span class="timeline-date" data-i18n="e1_date">March 2026 – Present</span>
-    <h3 data-i18n="e1_role">Network Engineer</h3>
-    <p style="color:var(--mint); margin-bottom:1rem;" data-i18n="e1_org">Jeddah Health Cluster</p>
-    <ul style="color:var(--text-mid); padding-left:1.5rem;" data-i18n="e1_list">
-      <li>Configuring Cisco Catalyst switches and routers for high availability.</li>
-      <li>Troubleshooting L2/L3 issues (VLANs, STP, Static/Dynamic Routing).</li>
-      <li>Implementing ACLs and port security for healthcare data protection.</li>
-    </ul>
-  </div>
-</section>
-
-<section id="skills">
-  <h2 style="font-family:var(--font-display); margin-bottom:3rem;" data-i18n="s_title">Skills Matrix</h2>
-  <div class="skills-grid">
-    <div class="card">
-      <h3 style="color:var(--blue); margin-bottom:1rem;" data-i18n="s1_t">Networking</h3>
-      <p style="color:var(--text-mid);">Cisco IOS, Routing & Switching, VLANs, STP, OSPF, TCP/IP.</p>
+<!-- ══ HERO ═════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><div class="blink"></div><span data-i18n="hero.badge">Network Engineer · Jeddah Health Cluster · Active</span></div>
+    <div class="hero-name">AMIN ALSHEHRI</div>
+    <h1 class="hero-headline">
+      <span data-i18n="hero.l1">Building</span><br>
+      <span class="accent" data-i18n="hero.l2">Scalable Network</span><br>
+      <span class="accent-2" data-i18n="hero.l3">Infrastructures.</span>
+    </h1>
+    <p class="hero-sub" data-i18n="hero.sub">
+      Driven Network Engineer at Jeddah Health Cluster—designing, configuring, and securing mission-critical Cisco network architectures that keep healthcare services running at peak performance.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-cyber"  data-i18n="hero.cta1">View Experience</a>
+      <a href="#contact"    class="btn-outline" data-i18n="hero.cta2">Get in Touch</a>
     </div>
-    <div class="card">
-      <h3 style="color:var(--mint); margin-bottom:1rem;" data-i18n="s2_t">Security</h3>
-      <p style="color:var(--text-mid);">ACLs, Firewalls, VPN Fundamentals, Backup & Recovery (100% success rate).</p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">100<span>+</span></div>
+        <div class="hstat-lbl" data-i18n="hs.devices">Devices Managed</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">100<span>%</span></div>
+        <div class="hstat-lbl" data-i18n="hs.recovery">Recovery Rate</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">#<span>1</span></div>
+        <div class="hstat-lbl" data-i18n="hs.etra">ETRA Bootcamp</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num" data-i18n="hs.ccna.val">WIP</div>
+        <div class="hstat-lbl" data-i18n="hs.ccna">CCNA (In Progress)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative terminal -->
+  <div class="hero-terminal">
+    <div class="term-bar">
+      <div class="term-dot" style="background:#ff5f57"></div>
+      <div class="term-dot" style="background:#febc2e"></div>
+      <div class="term-dot" style="background:#28c840"></div>
+      <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-lo);margin-left:.5rem;">network_status.sh</span>
+    </div>
+    <div class="term-body">
+      <span class="c-blue">$</span> show ip interface brief<br>
+      <span class="c-mint">GigE0/0</span>&nbsp;&nbsp;<span style="color:#28c840">UP</span>&nbsp;/&nbsp;<span style="color:#28c840">UP</span><br>
+      <span class="c-mint">GigE0/1</span>&nbsp;&nbsp;<span style="color:#28c840">UP</span>&nbsp;/&nbsp;<span style="color:#28c840">UP</span><br>
+      <span class="c-blue">$</span> show vlan brief<br>
+      <span class="c-mint">VLAN 10</span>&nbsp;<span class="c-warn">CLINICAL</span><br>
+      <span class="c-mint">VLAN 20</span>&nbsp;<span class="c-warn">ADMIN</span><br>
+      <span class="c-mint">VLAN 99</span>&nbsp;<span class="c-warn">MGMT</span><br>
+      <span class="c-blue">$</span> ping 192.168.1.1<br>
+      <span style="color:#28c840">!!!!!  Success rate 100%</span><br>
+      <span class="c-blue">$ </span><span class="term-cursor"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ════════════════════════════════ -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="sec-eyebrow reveal" data-i18n="exp.eyebrow">Professional Training</div>
+    <h2 class="sec-title reveal" data-i18n="exp.title">Experience &<br>Career Timeline</h2>
+    <p class="sec-desc reveal" data-i18n="exp.desc">A progressive path from IT support to network infrastructure engineering within Saudi Arabia's healthcare sector.</p>
+
+    <div class="timeline reveal">
+
+      <!-- Current Role -->
+      <div class="tl-item">
+        <div class="tl-node current"></div>
+        <div class="tl-period">
+          <span data-i18n="exp.t1.period">March 2026 – Present</span>
+          <span class="badge" data-i18n="exp.t1.badge">Current</span>
+        </div>
+        <div class="tl-role" data-i18n="exp.t1.role">Network Engineer</div>
+        <div class="tl-org" data-i18n="exp.t1.org">Jeddah Health Cluster — Jeddah, Saudi Arabia</div>
+        <div class="tl-card">
+          <ul>
+            <li data-i18n="exp.t1.b1">Configuring and maintaining Cisco Catalyst switches and routers to ensure high availability across critical healthcare infrastructure.</li>
+            <li data-i18n="exp.t1.b2">Diagnosing L2/L3 connectivity issues including VLANs, STP, and Static/Dynamic Routing to minimize network downtime.</li>
+            <li data-i18n="exp.t1.b3">Implementing security protocols (ACLs, Firewalls, VPN) to safeguard internal network infrastructure and sensitive patient data.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- IT Intern -->
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-period"><span data-i18n="exp.t2.period">Cooperative Training Period</span></div>
+        <div class="tl-role" data-i18n="exp.t2.role">IT Intern (Cooperative Training)</div>
+        <div class="tl-org" data-i18n="exp.t2.org">Tabuk Health Cluster — Tabuk, Saudi Arabia</div>
+        <div class="tl-card">
+          <ul>
+            <li data-i18n="exp.t2.b1">Developed a simulated network environment for training new IT personnel.</li>
+            <li data-i18n="exp.t2.b2">Supported and maintained 100+ computing devices in a high-demand healthcare setting.</li>
+            <li data-i18n="exp.t2.b3">Executed backup and recovery operations with a 100% success rate, ensuring zero data loss.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ════════════════════════════════════ -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="sec-eyebrow reveal" data-i18n="sk.eyebrow">Capabilities</div>
+    <h2 class="sec-title reveal" data-i18n="sk.title">Skills Matrix</h2>
+    <p class="sec-desc reveal" data-i18n="sk.desc">Deep expertise in Cisco technologies, networking protocols, and infrastructure security—built through real-world healthcare deployments.</p>
+
+    <div class="skills-grid reveal">
+      <!-- Networking Protocols -->
+      <div class="skill-group">
+        <div class="skill-group-title" data-i18n="sk.g1">Networking Protocols</div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">TCP/IP · IPv4 · IPv6</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">OSPF · Static/Dynamic Routing</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">VLANs · STP · Trunking</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">DHCP · DNS</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+        <div class="tag-cloud" style="margin-top:1rem;">
+          <span class="tcg hl">OSPF</span><span class="tcg hl">VLANs</span><span class="tcg hl">STP</span>
+          <span class="tcg">IPv4/IPv6</span><span class="tcg">TCP/IP</span><span class="tcg">DHCP</span><span class="tcg">DNS</span>
+        </div>
+      </div>
+
+      <!-- Cisco Technologies -->
+      <div class="skill-group">
+        <div class="skill-group-title" data-i18n="sk.g2">Cisco Technologies</div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Cisco IOS (CLI)</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Routing & Switching (L2/L3)</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Packet Tracer</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Cisco Catalyst Switches</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+        <div class="tag-cloud" style="margin-top:1rem;">
+          <span class="tcg hl">Cisco IOS</span><span class="tcg hl">Packet Tracer</span>
+          <span class="tcg">Catalyst</span><span class="tcg">L2/L3</span><span class="tcg">CCNA (WIP)</span>
+        </div>
+      </div>
+
+      <!-- Network Security -->
+      <div class="skill-group">
+        <div class="skill-group-title" data-i18n="sk.g3">Network Security</div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">ACLs (Standard & Extended)</span><span class="skill-pct">83%</span></div><div class="skill-bar"><div class="skill-fill" style="width:83%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Firewalls & Perimeter Security</span><span class="skill-pct">78%</span></div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">VPN Fundamentals</span><span class="skill-pct">72%</span></div><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Backup & Recovery</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+        <div class="tag-cloud" style="margin-top:1rem;">
+          <span class="tcg hl">ACLs</span><span class="tcg hl">Firewall</span><span class="tcg hl">VPN</span>
+          <span class="tcg">Backup/Recovery</span><span class="tcg">Wireshark</span><span class="tcg">PuTTY</span>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="skill-group">
+        <div class="skill-group-title" data-i18n="sk.g4">Soft Skills</div>
+        <div class="soft-grid">
+          <div class="soft-item" data-i18n="sk.s1">Team Collaboration</div>
+          <div class="soft-item" data-i18n="sk.s2">Analytical Problem-Solving</div>
+          <div class="soft-item" data-i18n="sk.s3">Time Management</div>
+          <div class="soft-item" data-i18n="sk.s4">Fast Learner</div>
+          <div class="soft-item" data-i18n="sk.s5">Communication</div>
+          <div class="soft-item" data-i18n="sk.s6">High Adaptability</div>
+        </div>
+        <div class="tag-cloud" style="margin-top:1.25rem;">
+          <span class="tcg">Arabic (Native)</span>
+          <span class="tcg">English (Professional)</span>
+          <span class="tcg">Git · GitHub</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACHIEVEMENT ═══════════════════════════════ -->
+<section id="achievement">
+  <div class="section-inner">
+    <div class="sec-eyebrow reveal" data-i18n="ach.eyebrow">Recognition</div>
+    <h2 class="sec-title reveal" data-i18n="ach.title">Top Achievement</h2>
+    <div class="ach-card reveal">
+      <div class="ach-rank">#1</div>
+      <div class="ach-text">
+        <div class="ach-label" data-i18n="ach.label">🏆 First Place — National Ranking</div>
+        <div class="ach-title" data-i18n="ach.cardtitle">ETRA Networking Bootcamp</div>
+        <div class="ach-desc" data-i18n="ach.desc">Ranked 1st place in the ETRA Networking Bootcamp—a rigorous 25-hour intensive program covering advanced network design, Cisco configuration, troubleshooting, and security. Demonstrated mastery of all core networking competencies among all participants.</div>
+        <div class="ach-meta">
+          <span class="ach-chip" data-i18n="ach.c1">25 Hours Intensive</span>
+          <span class="ach-chip" data-i18n="ach.c2">January 2026</span>
+          <span class="ach-chip" data-i18n="ach.c3">Cisco Networking</span>
+          <span class="ach-chip" data-i18n="ach.c4">1st Place 🥇</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══════════════════════════════════ -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="sec-eyebrow reveal" data-i18n="proj.eyebrow">Portfolio</div>
+    <h2 class="sec-title reveal" data-i18n="proj.title">Projects</h2>
+    <p class="sec-desc reveal" data-i18n="proj.desc">Hands-on projects demonstrating applied networking skills, system analysis, and database architecture.</p>
+
+    <div class="proj-grid reveal">
+
+      <div class="proj-card">
+        <div class="proj-num" data-i18n="p1.num">Project · 01</div>
+        <div class="proj-title" data-i18n="p1.title">Simulated Healthcare Network Lab</div>
+        <div class="proj-desc" data-i18n="p1.desc">Designed and deployed a simulated enterprise network environment at Tabuk Health Cluster using Cisco Packet Tracer. Configured VLANs, inter-VLAN routing, OSPF, and ACLs for training new IT personnel.</div>
+        <div class="proj-tags">
+          <span class="ptag">Cisco IOS</span><span class="ptag">VLANs</span>
+          <span class="ptag">OSPF</span><span class="ptag">ACLs</span><span class="ptag">Packet Tracer</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num" data-i18n="p2.num">Project · 02</div>
+        <div class="proj-title" data-i18n="p2.title">EduMatch — University Major Advisor Platform</div>
+        <div class="proj-desc" data-i18n="p2.desc">Developed a full electronic platform at the University of Tabuk to help students select university majors. Implemented interest-matching algorithms, a database of student experiences, and a UI/UX prototype using SQL and UML modeling.</div>
+        <div class="proj-tags">
+          <span class="ptag">SQL</span><span class="ptag">UML</span>
+          <span class="ptag">UI/UX</span><span class="ptag">System Analysis</span><span class="ptag">Database</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num" data-i18n="p3.num">Project · 03</div>
+        <div class="proj-title" data-i18n="p3.title">Backup & Recovery System</div>
+        <div class="proj-desc" data-i18n="p3.desc">Planned and executed a comprehensive backup and recovery strategy for 100+ devices at Tabuk Health Cluster—achieving a 100% success rate with zero data loss incidents across all critical healthcare systems.</div>
+        <div class="proj-tags">
+          <span class="ptag">Backup</span><span class="ptag">Recovery</span>
+          <span class="ptag">Healthcare IT</span><span class="ptag">100% Success</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION & CERTS ═════════════════════════ -->
+<section id="education" style="background:var(--bg-2);">
+  <div class="section-inner">
+    <div class="sec-eyebrow reveal" data-i18n="edu.eyebrow">Academic & Professional</div>
+    <h2 class="sec-title reveal" data-i18n="edu.title">Education &<br>Certifications</h2>
+    <div class="edu-grid reveal">
+
+      <div class="edu-card">
+        <div class="edu-label" data-i18n="edu.deg.label">Bachelor's Degree</div>
+        <div class="edu-degree" data-i18n="edu.deg.title">Bachelor of Information Technology</div>
+        <div class="edu-inst" data-i18n="edu.deg.inst">University of Tabuk · 2026</div>
+        <div class="cert-list">
+          <div class="cert-item pending">
+            <span class="cert-icon">⏳</span>
+            <span><strong data-i18n="cert.ccna">Cisco Certified Network Associate (CCNA)</strong> — <span data-i18n="cert.ccna.s">In Progress</span></span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">✦</span>
+            <span><strong data-i18n="cert.etra">1st Place — ETRA Networking Bootcamp</strong> · Jan 2026</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">✦</span>
+            <span><strong data-i18n="cert.adobe">2nd Place — Adobe After Effects Competition</strong> · Nov 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-label" data-i18n="edu.courses.label">Courses & Training</div>
+        <div class="course-grid">
+          <div class="course-card">
+            <div class="course-name" data-i18n="co.c1">Introduction to Databases (SQL)</div>
+            <div class="course-meta">Satr · Tuwaiq Academy · 7h · Jan 2026</div>
+          </div>
+          <div class="course-card">
+            <div class="course-name" data-i18n="co.c2">Power BI 103 (Intermediate)</div>
+            <div class="course-meta">Satr · Tuwaiq Academy · 13h · Jan 2026</div>
+          </div>
+          <div class="course-card">
+            <div class="course-name" data-i18n="co.c3">Introduction to Data Analysis</div>
+            <div class="course-meta">Satr · Tuwaiq Academy · 16h · Nov 2025</div>
+          </div>
+          <div class="course-card">
+            <div class="course-name" data-i18n="co.c4">Full-Stack Web Development</div>
+            <div class="course-meta">Satr · Tuwaiq Academy · 20h · Jan 2026</div>
+          </div>
+          <div class="course-card">
+            <div class="course-name" data-i18n="co.c5">Networking Program</div>
+            <div class="course-meta">IT Community · 6 days · Apr 2024</div>
+          </div>
+          <div class="course-card">
+            <div class="course-name" data-i18n="co.c6">ETRA Networking Bootcamp</div>
+            <div class="course-meta">ETRA · 25h · Jan 2026</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ═══════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <div class="sec-eyebrow" data-i18n="ct.eyebrow">Get in Touch</div>
+        <h2 class="sec-title" data-i18n="ct.title">Let's Build<br>Something Robust</h2>
+        <p data-i18n="ct.desc">Open to network engineering opportunities, collaborations, and conversations about infrastructure, security, and Cisco technologies.</p>
+        <div class="contact-links">
+          <a href="/cdn-cgi/l/email-protection#cdaca0a4a3bea5a8a5bfa48da2b8b9a1a2a2a6e3beac" class="clink">
+            <div class="clink-icon"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <span class="__cf_email__" data-cfemail="f9989490978a919c918b90b9968c8d95969692d78a98">[email&#160;protected]</span>
+          </a>
+          <a href="tel:0559494083" class="clink">
+            <div class="clink-icon"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg></div>
+            0559494083
+          </a>
+          <a href="https://linkedin.com/in/amin-alshehri" target="_blank" class="clink">
+            <div class="clink-icon"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+            linkedin.com/in/amin-alshehri
+          </a>
+          <a href="#" class="clink">
+            <div class="clink-icon"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <span data-i18n="ct.loc">Jeddah, Saudi Arabia</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group"><label class="form-label" data-i18n="cf.name">Full Name</label><input type="text" class="form-input" data-ph="cf.name.ph" placeholder="Your name"/></div>
+        <div class="form-group"><label class="form-label" data-i18n="cf.email">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"/></div>
+        <div class="form-group"><label class="form-label" data-i18n="cf.sub">Subject</label><input type="text" class="form-input" data-ph="cf.sub.ph" placeholder="Opportunity / Collaboration / Question"/></div>
+        <div class="form-group"><label class="form-label" data-i18n="cf.msg">Message</label><textarea class="form-textarea" data-ph="cf.msg.ph" placeholder="Tell me about the project or role..."></textarea></div>
+        <button class="btn-cyber" style="border:none;width:100%;padding:.9rem;font-size:.75rem;" data-i18n="cf.send">Send Message →</button>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p data-i18n="f_copy">© 2026 Amin Alshehri — CCNA Candidate | 1st Place ETRA Bootcamp</p>
+  <div class="ft-copy" data-i18n="ft.copy">© 2025 AMIN ALSHEHRI — NETWORK ENGINEER</div>
+  <a href="#hero" class="ft-top" data-i18n="ft.top">↑ TOP</a>
 </footer>
 
-<script>
+<!-- ══ JAVASCRIPT ════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══════════════════════════════════════════════════
+   TRANSLATIONS
+══════════════════════════════════════════════════ */
 const T = {
   en: {
-    h_tag: "Network Engineer · Jeddah Health Cluster", h_title: "Building Scalable & Secure Networks", h_sub: "Currently designing and securing mission-critical Cisco infrastructures at Jeddah Health Cluster.", h_cta: "View Experience",
-    e_title: "Career Path", e1_date: "March 2026 – Present", e1_role: "Network Engineer", e1_org: "Jeddah Health Cluster", e1_list: "<li>Configuring Cisco Catalyst switches and routers.</li><li>Troubleshooting L2/L3 issues.</li><li>Implementing ACLs for data protection.</li>",
-    s_title: "Skills Matrix", s1_t: "Networking", s2_t: "Security", f_copy: "© 2026 Amin Alshehri — CCNA Candidate | 1st Place ETRA Bootcamp"
+    'nav.exp':'Experience','nav.sk':'Skills','nav.ach':'Achievement',
+    'nav.proj':'Projects','nav.edu':'Education','nav.ct':'Contact',
+
+    'hero.badge':'Network Engineer · Jeddah Health Cluster · Active',
+    'hero.l1':'Building','hero.l2':'Scalable Network','hero.l3':'Infrastructures.',
+    'hero.sub':'Driven Network Engineer at Jeddah Health Cluster—designing, configuring, and securing mission-critical Cisco network architectures that keep healthcare services running at peak performance.',
+    'hero.cta1':'View Experience','hero.cta2':'Get in Touch',
+    'hs.devices':'Devices Managed','hs.recovery':'Recovery Rate',
+    'hs.etra':'ETRA Bootcamp','hs.ccna.val':'WIP','hs.ccna':'CCNA (In Progress)',
+
+    'exp.eyebrow':'Professional Training',
+    'exp.title':'Experience &<br>Career Timeline',
+    'exp.desc':'A progressive path from IT support to network infrastructure engineering within Saudi Arabia\'s healthcare sector.',
+    'exp.t1.period':'March 2026 – Present','exp.t1.badge':'Current',
+    'exp.t1.role':'Network Engineer','exp.t1.org':'Jeddah Health Cluster — Jeddah, Saudi Arabia',
+    'exp.t1.b1':'Configuring and maintaining Cisco Catalyst switches and routers to ensure high availability across critical healthcare infrastructure.',
+    'exp.t1.b2':'Diagnosing L2/L3 connectivity issues including VLANs, STP, and Static/Dynamic Routing to minimize network downtime.',
+    'exp.t1.b3':'Implementing security protocols (ACLs, Firewalls, VPN) to safeguard internal network infrastructure and sensitive patient data.',
+    'exp.t2.period':'Cooperative Training Period',
+    'exp.t2.role':'IT Intern (Cooperative Training)','exp.t2.org':'Tabuk Health Cluster — Tabuk, Saudi Arabia',
+    'exp.t2.b1':'Developed a simulated network environment for training new IT personnel.',
+    'exp.t2.b2':'Supported and maintained 100+ computing devices in a high-demand healthcare setting.',
+    'exp.t2.b3':'Executed backup and recovery operations with a 100% success rate, ensuring zero data loss.',
+
+    'sk.eyebrow':'Capabilities','sk.title':'Skills Matrix',
+    'sk.desc':'Deep expertise in Cisco technologies, networking protocols, and infrastructure security—built through real-world healthcare deployments.',
+    'sk.g1':'Networking Protocols','sk.g2':'Cisco Technologies',
+    'sk.g3':'Network Security','sk.g4':'Soft Skills',
+    'sk.s1':'Team Collaboration','sk.s2':'Analytical Problem-Solving',
+    'sk.s3':'Time Management','sk.s4':'Fast Learner',
+    'sk.s5':'Communication','sk.s6':'High Adaptability',
+
+    'ach.eyebrow':'Recognition','ach.title':'Top Achievement',
+    'ach.label':'🏆 First Place — National Ranking',
+    'ach.cardtitle':'ETRA Networking Bootcamp',
+    'ach.desc':'Ranked 1st place in the ETRA Networking Bootcamp—a rigorous 25-hour intensive program covering advanced network design, Cisco configuration, troubleshooting, and security. Demonstrated mastery of all core networking competencies among all participants.',
+    'ach.c1':'25 Hours Intensive','ach.c2':'January 2026','ach.c3':'Cisco Networking','ach.c4':'1st Place 🥇',
+
+    'proj.eyebrow':'Portfolio','proj.title':'Projects',
+    'proj.desc':'Hands-on projects demonstrating applied networking skills, system analysis, and database architecture.',
+    'p1.num':'Project · 01','p1.title':'Simulated Healthcare Network Lab',
+    'p1.desc':'Designed and deployed a simulated enterprise network environment at Tabuk Health Cluster using Cisco Packet Tracer. Configured VLANs, inter-VLAN routing, OSPF, and ACLs for training new IT personnel.',
+    'p2.num':'Project · 02','p2.title':'EduMatch — University Major Advisor Platform',
+    'p2.desc':'Developed a full electronic platform at the University of Tabuk to help students select university majors. Implemented interest-matching algorithms, a database of student experiences, and a UI/UX prototype using SQL and UML modeling.',
+    'p3.num':'Project · 03','p3.title':'Backup & Recovery System',
+    'p3.desc':'Planned and executed a comprehensive backup and recovery strategy for 100+ devices at Tabuk Health Cluster—achieving a 100% success rate with zero data loss incidents across all critical healthcare systems.',
+
+    'edu.eyebrow':'Academic & Professional','edu.title':'Education &<br>Certifications',
+    'edu.deg.label':'Bachelor\'s Degree',
+    'edu.deg.title':'Bachelor of Information Technology',
+    'edu.deg.inst':'University of Tabuk · 2026',
+    'cert.ccna':'Cisco Certified Network Associate (CCNA)','cert.ccna.s':'In Progress',
+    'cert.etra':'1st Place — ETRA Networking Bootcamp',
+    'cert.adobe':'2nd Place — Adobe After Effects Competition',
+    'edu.courses.label':'Courses & Training',
+    'co.c1':'Introduction to Databases (SQL)','co.c2':'Power BI 103 (Intermediate)',
+    'co.c3':'Introduction to Data Analysis','co.c4':'Full-Stack Web Development',
+    'co.c5':'Networking Program','co.c6':'ETRA Networking Bootcamp',
+
+    'ct.eyebrow':'Get in Touch','ct.title':'Let\'s Build<br>Something Robust',
+    'ct.desc':'Open to network engineering opportunities, collaborations, and conversations about infrastructure, security, and Cisco technologies.',
+    'ct.loc':'Jeddah, Saudi Arabia',
+    'cf.name':'Full Name','cf.name.ph':'Your name','cf.email':'Email Address',
+    'cf.sub':'Subject','cf.sub.ph':'Opportunity / Collaboration / Question',
+    'cf.msg':'Message','cf.msg.ph':'Tell me about the project or role...','cf.send':'Send Message →',
+
+    'ft.copy':'© 2025 AMIN ALSHEHRI — NETWORK ENGINEER','ft.top':'↑ TOP'
   },
+
   ar: {
-    h_tag: "مهندس شبكات · تجمع جدة الصحي", h_title: "بناء شبكات آمنة وقابلة للتوسع", h_sub: "أقوم حالياً بتصميم وتأمين البنى التحتية التقنية لشبكات سيسكو الحيوية في تجمع جدة الصحي.", h_cta: "استعرض الخبرة",
-    e_title: "المسار المهني", e1_date: "مارس 2026 – حتى الآن", e1_role: "مهندس شبكات", e1_org: "تجمع جدة الصحي", e1_list: "<li>تهيئة وصيانة مفاتيح وراوترات سيسكو لضمان التوافر العالي.</li><li>تشخيص أعطال الشبكات في الطبقتين الثانية والثالثة.</li><li>تطبيق قوائم التحكم في الوصول (ACLs) لحماية البيانات الصحية.</li>",
-    s_title: "مصفوفة المهارات", s1_t: "هندسة الشبكات", s2_t: "أمن الشبكات", f_copy: "© 2026 أمين الشهري — مرشح CCNA | المركز الأول في معسكر ETRA"
+    'nav.exp':'الخبرة','nav.sk':'المهارات','nav.ach':'الإنجاز',
+    'nav.proj':'المشاريع','nav.edu':'التعليم','nav.ct':'تواصل',
+
+    /* ── Arabic translations: Modern Standard Arabic (MSA)
+          with industry-standard networking terminology ── */
+
+    // ═══ Navigation ═══
+    'nav.exp': 'الخبرة العملية',
+    'nav.sk':  'المهارات',
+    'nav.ach': 'الإنجازات',
+    'nav.proj':'المشاريع',
+    'nav.edu': 'التعليم',
+    'nav.ct':  'تواصل معي',
+
+    // ═══ Hero ═══
+    'hero.badge': 'مهندس شبكات · تجمع جدة الصحي · يعمل حالياً',
+    'hero.l1': 'تصميم وبناء',
+    'hero.l2': 'بنى تحتية شبكية',
+    'hero.l3': 'موثوقة وقابلة للتوسع.',
+    'hero.sub': 'مهندس شبكات في تجمع جدة الصحي، متخصص في تصميم وتهيئة وتأمين البنى التحتية الشبكية الحيوية المبنية على منتجات Cisco، بهدف ضمان استمرارية خدمات الرعاية الصحية وتحقيق أعلى مستويات الأداء والتوافر.',
+    'hero.cta1': 'استعرض خبرتي',
+    'hero.cta2': 'تواصل معي',
+    'hs.devices':  'جهاز تحت الإشراف',
+    'hs.recovery': 'معدل نجاح الاسترداد',
+    'hs.etra':     'معسكر ETRA',
+    'hs.ccna.val': 'جارٍ',
+    'hs.ccna':     'شهادة CCNA (قيد الإعداد)',
+
+    // ═══ Experience ═══
+    'exp.eyebrow': 'الخبرة المهنية',
+    'exp.title':   'المسيرة المهنية<br>والخبرة العملية',
+    'exp.desc':    'مسار مهني تصاعدي انتقل من دعم تقنية المعلومات إلى هندسة البنية التحتية للشبكات ضمن منظومة الرعاية الصحية في المملكة العربية السعودية.',
+    'exp.t1.period': 'مارس ٢٠٢٦ – حتى الآن',
+    'exp.t1.badge':  'الوظيفة الحالية',
+    'exp.t1.role':   'مهندس شبكات',
+    'exp.t1.org':    'تجمع جدة الصحي — جدة، المملكة العربية السعودية',
+    'exp.t1.b1': 'تهيئة مفاتيح الشبكة (Switches) وأجهزة التوجيه (Routers) من سلسلة Cisco Catalyst وصيانتها، لضمان التوافر العالي (High Availability) للبنية التحتية الصحية الحيوية.',
+    'exp.t1.b2': 'تشخيص أعطال الاتصال في الطبقتين الثانية والثالثة (L2/L3)، بما تشمله من مشكلات الشبكات المحلية الافتراضية (VLANs) وبروتوكول Spanning Tree (STP) والتوجيه الثابت والديناميكي، بهدف تقليص أوقات التعطل.',
+    'exp.t1.b3': 'تطبيق آليات الحماية الشبكية، شاملةً قوائم التحكم في الوصول (ACLs) وجدران الحماية (Firewalls) والشبكات الافتراضية الخاصة (VPN)، لصون البنية التحتية الداخلية وحماية بيانات المرضى الحساسة.',
+    'exp.t2.period': 'فترة التدريب التعاوني',
+    'exp.t2.role':   'متدرب تقنية معلومات — تدريب تعاوني',
+    'exp.t2.org':    'تجمع تبوك الصحي — تبوك، المملكة العربية السعودية',
+    'exp.t2.b1': 'بناء بيئة شبكة محاكاة (Simulated Network Environment) لأغراض تدريب الكوادر التقنية المستجدة.',
+    'exp.t2.b2': 'تقديم الدعم الفني وإدارة أكثر من ١٠٠ جهاز حاسوبي في بيئة عمل صحية مكثفة وعالية الطلب.',
+    'exp.t2.b3': 'تنفيذ عمليات النسخ الاحتياطي (Backup) والاسترداد (Recovery) بنسبة نجاح بلغت ١٠٠٪، مع ضمان صفر من حوادث فقدان البيانات.',
+
+    // ═══ Skills ═══
+    'sk.eyebrow': 'الكفاءات التقنية',
+    'sk.title':   'مصفوفة المهارات',
+    'sk.desc':    'إلمام عميق بتقنيات Cisco وبروتوكولات الشبكات وأمن البنية التحتية، مكتسَب من خلال تجارب تطبيقية فعلية في القطاع الصحي.',
+    'sk.g1': 'بروتوكولات الشبكات',
+    'sk.g2': 'تقنيات Cisco',
+    'sk.g3': 'أمن الشبكات',
+    'sk.g4': 'المهارات الشخصية والقيادية',
+    'sk.s1': 'روح الفريق والتعاون الفعّال',
+    'sk.s2': 'التحليل المنطقي وحل المشكلات',
+    'sk.s3': 'إدارة الوقت وتحديد الأولويات',
+    'sk.s4': 'سرعة التعلم والاستيعاب',
+    'sk.s5': 'التواصل الاحترافي الفعّال',
+    'sk.s6': 'القدرة العالية على التكيّف',
+
+    // ═══ Achievement ═══
+    'ach.eyebrow':   'التميز والإنجاز',
+    'ach.title':     'أبرز الإنجازات',
+    'ach.label':     '🏆 المركز الأول — على مستوى المشاركين',
+    'ach.cardtitle': 'معسكر ETRA التدريبي لهندسة الشبكات',
+    'ach.desc':      'حقّق المركز الأول في معسكر ETRA التدريبي المتخصص في هندسة الشبكات؛ وهو برنامج مكثّف بمدة ٢٥ ساعة يغطي تصميم الشبكات المتقدم، وتهيئة أجهزة Cisco، واستكشاف الأعطال وإصلاحها، وآليات الأمن الشبكي. أثبت تفوّقه وإتقانه لجميع كفاءات هندسة الشبكات الأساسية على مستوى المشاركين كافة.',
+    'ach.c1': 'برنامج مكثّف — ٢٥ ساعة',
+    'ach.c2': 'يناير ٢٠٢٦',
+    'ach.c3': 'هندسة شبكات Cisco',
+    'ach.c4': 'المركز الأول 🥇',
+
+    // ═══ Projects ═══
+    'proj.eyebrow': 'معرض المشاريع',
+    'proj.title':   'المشاريع التقنية',
+    'proj.desc':    'مشاريع تطبيقية تُجسّد مهارات هندسة الشبكات وتحليل الأنظمة وتصميم قواعد البيانات.',
+    'p1.num':   'المشروع الأول',
+    'p1.title': 'مختبر الشبكة الصحية المحاكَاة',
+    'p1.desc':  'تصميم ونشر بيئة شبكة مؤسسية محاكَاة داخل تجمع تبوك الصحي باستخدام Cisco Packet Tracer، وتضمّنت تهيئة الشبكات المحلية الافتراضية (VLANs) والتوجيه بينها (Inter-VLAN Routing) وبروتوكول OSPF وقوائم التحكم في الوصول (ACLs)، لأغراض تدريب الكوادر الجديدة في قسم تقنية المعلومات.',
+    'p2.num':   'المشروع الثاني',
+    'p2.title': 'EduMatch — منصة إرشاد الطلاب إلى التخصص الجامعي',
+    'p2.desc':  'تطوير منصة إلكترونية متكاملة بجامعة تبوك تهدف إلى مساعدة الطلاب على اختيار تخصصاتهم الأكاديمية المناسبة، عبر خوارزميات تحليل الاهتمامات والمهارات، وقاعدة بيانات تجمع تجارب الخريجين وتقييمات التخصصات، مع تصميم نموذج أولي للواجهة باستخدام SQL ونمذجة UML.',
+    'p3.num':   'المشروع الثالث',
+    'p3.title': 'منظومة النسخ الاحتياطي والاسترداد',
+    'p3.desc':  'تخطيط وتنفيذ استراتيجية شاملة للنسخ الاحتياطي واسترداد البيانات لأكثر من ١٠٠ جهاز في تجمع تبوك الصحي، بنسبة نجاح بلغت ١٠٠٪ وصفر من حوادث فقدان البيانات عبر جميع الأنظمة الحيوية.',
+
+    // ═══ Education ═══
+    'edu.eyebrow':       'المؤهلات الأكاديمية والمهنية',
+    'edu.title':         'التعليم<br>والشهادات الاحترافية',
+    'edu.deg.label':     'الدرجة العلمية',
+    'edu.deg.title':     'بكالوريوس تقنية المعلومات',
+    'edu.deg.inst':      'جامعة تبوك · ٢٠٢٦',
+    'cert.ccna':         'شهادة Cisco المعتمدة لمهندس الشبكات (CCNA)',
+    'cert.ccna.s':       'قيد الإعداد',
+    'cert.etra':         'المركز الأول — معسكر ETRA التدريبي لهندسة الشبكات',
+    'cert.adobe':        'المركز الثاني — مسابقة Adobe After Effects الجامعية',
+    'edu.courses.label': 'الدورات التدريبية',
+    'co.c1': 'مقدمة في قواعد البيانات (SQL)',
+    'co.c2': 'Power BI 103 — المستوى المتوسط',
+    'co.c3': 'مقدمة في تحليل البيانات',
+    'co.c4': 'تطوير تطبيقات الويب المتكاملة (Full-Stack)',
+    'co.c5': 'البرنامج التأهيلي في الشبكات',
+    'co.c6': 'معسكر ETRA التدريبي لهندسة الشبكات',
+
+    // ═══ Contact ═══
+    'ct.eyebrow': 'تواصل معي',
+    'ct.title':   'لنبني معاً<br>بنيةً تحتيةً راسخة',
+    'ct.desc':    'أرحّب بفرص العمل في هندسة الشبكات والشراكات المهنية والنقاشات التقنية المتعلقة بتصميم البنى التحتية وأمن الشبكات وتقنيات Cisco.',
+    'ct.loc':     'جدة، المملكة العربية السعودية',
+    'cf.name':    'الاسم الكامل',
+    'cf.name.ph': 'الاسم الكامل',
+    'cf.email':   'البريد الإلكتروني',
+    'cf.sub':     'موضوع الرسالة',
+    'cf.sub.ph':  'فرصة عمل / تعاون مهني / استفسار تقني',
+    'cf.msg':     'نص الرسالة',
+    'cf.msg.ph':  'يسعدني الاطلاع على تفاصيل المشروع أو الفرصة المتاحة...',
+    'cf.send':    'إرسال الرسالة ←',
+
+    // ═══ Footer ═══
+    'ft.copy': '© ٢٠٢٦ أمين الشهري — مهندس شبكات',
+    'ft.top':  '↑ العودة إلى الأعلى'
   }
 };
+
+/* ══════════════════════════════════════════════════
+   LANGUAGE SWITCHER
+══════════════════════════════════════════════════ */
 let lang = 'en';
-function toggleLang() {
-  lang = (lang === 'en') ? 'ar' : 'en';
-  document.documentElement.lang = lang;
-  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-  document.getElementById('lBtn').innerText = (lang === 'en') ? 'العربية' : 'English';
-  document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = T[lang][el.getAttribute('data-i18n')]; });
+
+function setLang(l) {
+  if (l === lang) return;
+  lang = l;
+  const html = document.documentElement;
+  html.lang = l;
+  html.dir  = l === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('btnEn').classList.toggle('active', l === 'en');
+  document.getElementById('btnAr').classList.toggle('active', l === 'ar');
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = T[l][el.getAttribute('data-i18n')];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-ph]').forEach(el => {
+    const v = T[l][el.getAttribute('data-ph')];
+    if (v !== undefined) el.placeholder = v;
+  });
+
+  // Update logo text
+  const logo = document.getElementById('navLogoText');
+  if (logo) logo.textContent = l === 'ar' ? 'أ.الشهري' : 'A.ALSHEHRI';
+
+  document.title = l === 'ar'
+    ? 'أمين الشهري — مهندس شبكات'
+    : 'Amin Alshehri — Network Engineer';
 }
+
+/* ══════════════════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════════════════ */
+const cur = document.getElementById('cursor');
+const rng = document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function loop(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; rng.style.left=rx+'px'; rng.style.top=ry+'px'; requestAnimationFrame(loop); })();
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter',()=>{ cur.style.transform='translate(-50%,-50%) scale(3)'; cur.style.background='var(--blue)'; rng.style.opacity='0'; });
+  el.addEventListener('mouseleave',()=>{ cur.style.transform='translate(-50%,-50%) scale(1)'; cur.style.background='var(--mint)'; rng.style.opacity='.6'; });
+});
+
+/* ══════════════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════════════ */
+const ro = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*70); });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+/* SKILL BARS */
+const so = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.style.animationPlayState='running'; });
+},{threshold:.3});
+document.querySelectorAll('.skill-fill').forEach(b=>{ b.style.animationPlayState='paused'; so.observe(b); });
+
+/* NAV SCROLL */
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.background =
+    window.scrollY>50 ? 'rgba(5,13,26,.97)' : 'rgba(5,13,26,.88)';
+});
 </script>
 </body>
 </html>
