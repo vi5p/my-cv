@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Amin Alshehri — Data Analysis Specialist</title>
+  <title>Amin Alshehri — Network Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -21,601 +21,186 @@
     body{font-family:var(--font-body);background:var(--navy);color:var(--text-primary);overflow-x:hidden;cursor:none;}
     .cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s ease,opacity .2s;transform:translate(-50%,-50%);}
     .cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transition:transform .35s cubic-bezier(.18,.89,.32,1.28),opacity .3s;transform:translate(-50%,-50%);opacity:.5;}
-    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.4;}
-    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(74,158,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,158,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
-
+    
     /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 5vw;display:flex;align-items:center;justify-content:space-between;background:rgba(11,20,38,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background .3s;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 5vw;display:flex;align-items:center;justify-content:space-between;background:rgba(11,20,38,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
     .nav-logo{font-family:var(--font-display);font-weight:800;font-size:1.1rem;color:var(--text-primary);letter-spacing:-.02em;}
-    html[lang="ar"] .nav-logo{letter-spacing:0;}
     .nav-logo span{color:var(--accent);}
     .nav-right{display:flex;align-items:center;gap:1.5rem;}
     .nav-links{display:flex;gap:2rem;list-style:none;}
-    .nav-links a{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;color:var(--text-secondary);text-decoration:none;text-transform:uppercase;transition:color .2s;position:relative;}
-    html[lang="ar"] .nav-links a{letter-spacing:0;text-transform:none;font-size:.9rem;}
-    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .25s ease;}
+    .nav-links a{font-family:var(--font-mono);font-size:.75rem;color:var(--text-secondary);text-decoration:none;text-transform:uppercase;transition:color .2s;}
     .nav-links a:hover{color:var(--accent);}
-    .nav-links a:hover::after{transform:scaleX(1);}
-
-    /* LANG TOGGLE */
-    .lang-toggle{display:flex;align-items:center;background:rgba(74,158,255,.06);border:1px solid var(--border);border-radius:100px;padding:3px;gap:2px;cursor:none;}
-    .lang-btn{font-family:var(--font-mono);font-size:.68rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .75rem;border-radius:100px;border:none;background:transparent;color:var(--text-muted);cursor:none;transition:all .25s;}
-    .lang-btn.active{background:var(--accent);color:var(--navy);box-shadow:0 2px 12px rgba(74,158,255,.35);}
-    .lang-btn:not(.active):hover{color:var(--accent);}
-
-    section{position:relative;z-index:2;}
+    .lang-toggle{display:flex;background:rgba(74,158,255,.06);border:1px solid var(--border);border-radius:100px;padding:3px;}
+    .lang-btn{font-family:var(--font-mono);font-size:.68rem;padding:.3rem .75rem;border-radius:100px;border:none;background:transparent;color:var(--text-muted);cursor:none;}
+    .lang-btn.active{background:var(--accent);color:var(--navy);}
 
     /* HERO */
-    #hero{min-height:100vh;display:flex;align-items:center;padding:10rem 5vw 6rem;position:relative;overflow:hidden;}
-    .hero-glow{position:absolute;top:-20%;right:-10%;width:60vw;height:60vw;background:radial-gradient(circle,rgba(74,158,255,.08) 0%,transparent 70%);pointer-events:none;}
-    html[lang="ar"] .hero-glow{right:auto;left:-10%;}
-    .hero-glow-2{position:absolute;bottom:-10%;left:-5%;width:40vw;height:40vw;background:radial-gradient(circle,rgba(0,212,170,.06) 0%,transparent 70%);pointer-events:none;}
-    html[lang="ar"] .hero-glow-2{left:auto;right:-5%;}
-    .hero-label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;opacity:0;animation:fadeUp .8s .2s forwards;}
-    html[lang="ar"] .hero-label{letter-spacing:0;text-transform:none;font-size:.9rem;}
-    .hero-label::before{content:'';display:block;width:32px;height:1px;background:var(--accent);}
-    .hero-headline{font-family:var(--font-display);font-size:clamp(3rem,7vw,6.5rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin-bottom:2rem;opacity:0;animation:fadeUp .9s .4s forwards;}
-    html[lang="ar"] .hero-headline{letter-spacing:0;line-height:1.2;}
+    #hero{min-height:100vh;display:flex;align-items:center;padding:10rem 5vw 6rem;position:relative;}
+    .hero-label{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;}
+    .hero-label::before{content:'';width:32px;height:1px;background:var(--accent);}
+    .hero-headline{font-family:var(--font-display);font-size:clamp(2.5rem,7vw,5.5rem);font-weight:800;line-height:1.05;margin-bottom:2rem;}
     .hero-headline .line-accent{color:var(--accent);}
-    .hero-headline .line-dim{color:var(--text-secondary);}
-    .hero-sub{font-size:1.1rem;color:var(--text-secondary);max-width:540px;line-height:1.85;margin-bottom:3rem;opacity:0;animation:fadeUp .9s .6s forwards;}
-    html[lang="ar"] .hero-sub{font-size:1.05rem;line-height:2;}
-    .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .8s forwards;}
-    .btn-primary{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 2rem;background:var(--accent);color:var(--navy);border:none;border-radius:4px;text-decoration:none;font-weight:500;transition:all .25s;cursor:none;}
-    html[lang="ar"] .btn-primary{letter-spacing:0;text-transform:none;font-size:.95rem;}
-    .btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 30px rgba(74,158,255,.35);}
-    .btn-secondary{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 2rem;background:transparent;color:var(--text-secondary);border:1px solid var(--border);border-radius:4px;text-decoration:none;transition:all .25s;cursor:none;}
-    html[lang="ar"] .btn-secondary{letter-spacing:0;text-transform:none;font-size:.95rem;}
-    .btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
-    .hero-stats{position:absolute;bottom:4rem;left:5vw;right:5vw;display:flex;gap:3rem;padding-top:2rem;border-top:1px solid var(--border);opacity:0;animation:fadeUp .9s 1s forwards;}
-    .stat-item{display:flex;flex-direction:column;gap:.3rem;}
-    .stat-num{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--text-primary);}
-    .stat-num span{color:var(--accent);}
-    .stat-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);}
-    html[lang="ar"] .stat-label{letter-spacing:0;text-transform:none;font-size:.8rem;}
+    .hero-sub{font-size:1.1rem;color:var(--text-secondary);max-width:600px;line-height:1.85;margin-bottom:3rem;}
+    .btn-primary{font-family:var(--font-mono);padding:.9rem 2rem;background:var(--accent);color:var(--navy);text-decoration:none;border-radius:4px;font-weight:600;}
 
-    /* SECTION COMMONS */
+    /* SECTIONS */
     .section-inner{max-width:1200px;margin:0 auto;padding:7rem 5vw;}
-    .section-tag{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;}
-    html[lang="ar"] .section-tag{letter-spacing:0;text-transform:none;font-size:.85rem;}
-    .section-tag::before{content:'';display:block;width:24px;height:1px;background:var(--accent);}
-    .section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem;}
-    html[lang="ar"] .section-title{letter-spacing:0;line-height:1.25;}
-    .section-desc{font-size:1rem;color:var(--text-secondary);max-width:560px;line-height:1.8;margin-bottom:4rem;}
-    html[lang="ar"] .section-desc{line-height:2;}
-
-    /* ABOUT */
-    #about{background:var(--navy-mid);}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-    .about-visual{position:relative;}
-    .about-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:2.5rem;backdrop-filter:blur(12px);position:relative;overflow:hidden;}
-    .about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
-    .about-avatar-placeholder{width:80px;height:80px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:50%;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.8rem;font-weight:800;color:var(--navy);}
-    .about-card-name{font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:.25rem;}
-    .about-card-role{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;}
-    html[lang="ar"] .about-card-role{letter-spacing:0;text-transform:none;font-size:.85rem;}
-    .about-card-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
-    .tag{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;padding:.35rem .75rem;border:1px solid var(--border);border-radius:3px;color:var(--text-secondary);text-transform:uppercase;}
-    html[lang="ar"] .tag{letter-spacing:0;text-transform:none;font-size:.78rem;}
-    .about-floating-stat{position:absolute;right:-1.5rem;bottom:3rem;background:var(--navy);border:1px solid var(--border);border-radius:10px;padding:1rem 1.5rem;text-align:center;}
-    html[lang="ar"] .about-floating-stat{right:auto;left:-1.5rem;}
-    .about-floating-stat .num{font-family:var(--font-display);font-size:1.8rem;font-weight:800;color:var(--accent-2);}
-    .about-floating-stat .lbl{font-family:var(--font-mono);font-size:.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;}
-    html[lang="ar"] .about-floating-stat .lbl{letter-spacing:0;text-transform:none;font-size:.78rem;}
-    .about-text p{font-size:1rem;line-height:1.9;color:var(--text-secondary);margin-bottom:1.25rem;}
-    html[lang="ar"] .about-text p{line-height:2.1;}
-    .about-text p strong{color:var(--text-primary);font-weight:600;}
-    .about-text p .highlight{color:var(--accent);}
-
-    /* TIMELINE */
-    .timeline{position:relative;padding-left:2rem;}
-    html[lang="ar"] .timeline{padding-left:0;padding-right:2rem;}
-    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent-2),transparent);}
-    html[lang="ar"] .timeline::before{left:auto;right:0;}
-    .timeline-item{position:relative;padding:0 0 3.5rem 2.5rem;}
-    html[lang="ar"] .timeline-item{padding:0 2.5rem 3.5rem 0;}
-    .timeline-item:last-child{padding-bottom:0;}
-    .timeline-dot{position:absolute;left:-2rem;top:.35rem;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--navy);box-shadow:0 0 12px var(--glow);transform:translateX(-50%);}
-    html[lang="ar"] .timeline-dot{left:auto;right:-2rem;transform:translateX(50%);}
-    .timeline-dot.edu{background:var(--accent-2);box-shadow:0 0 12px rgba(0,212,170,.4);}
-    .timeline-meta{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem;}
-    html[lang="ar"] .timeline-meta{letter-spacing:0;text-transform:none;font-size:.82rem;}
-    .timeline-meta.edu{color:var(--accent-2);}
-    .timeline-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:.25rem;}
-    .timeline-org{font-size:.9rem;color:var(--text-secondary);margin-bottom:1rem;}
-    .timeline-body{font-size:.9rem;color:var(--text-secondary);line-height:1.8;background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;}
-    html[lang="ar"] .timeline-body{line-height:2;font-size:.95rem;}
-    .timeline-body ul{padding-left:1.2rem;}
-    html[lang="ar"] .timeline-body ul{padding-left:0;padding-right:1.2rem;}
-    .timeline-body li{margin-bottom:.4rem;}
-    .timeline-body li::marker{color:var(--accent);}
-
-    /* PROJECTS */
-    #projects{background:var(--navy-mid);}
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;}
-    .project-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:2rem;transition:all .35s cubic-bezier(.25,.46,.45,.94);position:relative;overflow:hidden;}
-    .project-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(74,158,255,.04),transparent);opacity:0;transition:opacity .35s;}
-    .project-card:hover{border-color:rgba(74,158,255,.4);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 0 1px rgba(74,158,255,.1);}
-    .project-card:hover::before{opacity:1;}
-    .project-num{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;color:var(--text-muted);text-transform:uppercase;margin-bottom:1rem;}
-    html[lang="ar"] .project-num{letter-spacing:0;text-transform:none;font-size:.8rem;}
-    .project-title{font-family:var(--font-display);font-size:1.15rem;font-weight:700;margin-bottom:.75rem;line-height:1.3;}
-    html[lang="ar"] .project-title{letter-spacing:0;line-height:1.5;}
-    .project-desc{font-size:.88rem;color:var(--text-secondary);line-height:1.75;margin-bottom:1.5rem;}
-    html[lang="ar"] .project-desc{line-height:2;font-size:.92rem;}
-    .project-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem;}
-    .project-tag{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.06em;padding:.3rem .6rem;background:rgba(74,158,255,.08);border:1px solid rgba(74,158,255,.2);border-radius:3px;color:var(--accent);text-transform:uppercase;}
-    html[lang="ar"] .project-tag{letter-spacing:0;text-transform:none;font-size:.75rem;}
-    .project-links{display:flex;gap:.75rem;}
-    .project-link{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);border-radius:4px;padding:.4rem .8rem;transition:all .2s;text-transform:uppercase;cursor:none;}
-    html[lang="ar"] .project-link{letter-spacing:0;text-transform:none;font-size:.8rem;}
-    .project-link:hover{color:var(--accent);border-color:var(--accent);}
-    .project-link svg{display:inline;vertical-align:middle;margin-right:4px;}
-    html[lang="ar"] .project-link svg{margin-right:0;margin-left:4px;}
+    .section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:800;margin-bottom:3rem;}
+    
+    .timeline{position:relative;padding-left:2rem;border-left:1px solid var(--border);}
+    html[lang="ar"] .timeline{padding-left:0;padding-right:2rem;border-left:none;border-right:1px solid var(--border);}
+    .timeline-item{margin-bottom:3.5rem;position:relative;}
+    .timeline-dot{position:absolute;left:-2.35rem;top:0.5rem;width:12px;height:12px;background:var(--accent);border-radius:50%;}
+    html[lang="ar"] .timeline-dot{left:auto;right:-2.35rem;}
+    .timeline-meta{font-family:var(--font-mono);font-size:.8rem;color:var(--accent);margin-bottom:.5rem;}
+    .timeline-body{background:var(--glass);padding:1.5rem;border-radius:12px;border:1px solid var(--border);}
 
     /* SKILLS */
-    .skills-container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
-    .skills-group-title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:1.75rem;display:flex;align-items:center;gap:.75rem;}
-    .skills-group-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
-    .skill-item{margin-bottom:1.25rem;}
-    .skill-header{display:flex;justify-content:space-between;margin-bottom:.5rem;}
-    .skill-name{font-family:var(--font-body);font-size:.88rem;color:var(--text-primary);}
-    html[lang="ar"] .skill-name{font-size:.93rem;}
-    .skill-pct{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);}
-    .skill-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;}
-    .skill-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform-origin:left;animation:skillGrow 1.2s cubic-bezier(.16,1,.3,1) forwards;transform:scaleX(0);}
-    html[lang="ar"] .skill-fill{transform-origin:right;}
-    @keyframes skillGrow{to{transform:scaleX(1);}}
-    .soft-skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
-    .soft-skill{background:var(--glass);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;font-size:.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:.6rem;}
-    html[lang="ar"] .soft-skill{font-size:.9rem;}
-    .soft-skill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-2);flex-shrink:0;}
-    .tools-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;}
-    .tool-badge{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.05em;padding:.45rem 1rem;border:1px solid var(--border);border-radius:100px;color:var(--text-secondary);transition:all .2s;}
-    html[lang="ar"] .tool-badge{letter-spacing:0;font-size:.82rem;}
-    .tool-badge:hover{border-color:var(--accent);color:var(--accent);background:rgba(74,158,255,.05);}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:2rem;}
+    .skill-card{background:var(--glass);padding:1.5rem;border-radius:12px;border:1px solid var(--border);}
+    .skill-name{display:block;margin-bottom:.75rem;font-weight:600;}
+    .skill-bar{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;}
+    .skill-fill{height:100%;background:var(--accent);border-radius:2px;}
 
-    /* CONTACT */
-    #contact{background:var(--navy-mid);}
-    .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;}
-    .contact-info p{font-size:.95rem;color:var(--text-secondary);line-height:1.85;margin-bottom:2.5rem;}
-    html[lang="ar"] .contact-info p{line-height:2.1;font-size:1rem;}
-    .contact-links{display:flex;flex-direction:column;gap:1rem;}
-    .contact-link{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--text-secondary);font-size:.9rem;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:10px;transition:all .25s;cursor:none;}
-    html[lang="ar"] .contact-link{font-size:.95rem;}
-    .contact-link:hover{border-color:var(--accent);color:var(--accent);background:rgba(74,158,255,.04);transform:translateX(6px);}
-    html[lang="ar"] .contact-link:hover{transform:translateX(-6px);}
-    .contact-link-icon{width:36px;height:36px;background:rgba(74,158,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--accent);}
-    .contact-form{display:flex;flex-direction:column;gap:1.25rem;}
-    .form-group{display:flex;flex-direction:column;gap:.5rem;}
-    .form-label{font-family:var(--font-mono);font-size:.67rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase;}
-    html[lang="ar"] .form-label{letter-spacing:0;text-transform:none;font-size:.82rem;}
-    .form-input,.form-textarea{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;color:var(--text-primary);font-family:var(--font-body);font-size:.9rem;transition:border-color .2s,box-shadow .2s;outline:none;resize:none;}
-    html[lang="ar"] .form-input,html[lang="ar"] .form-textarea{font-size:.95rem;text-align:right;}
-    .form-input:focus,.form-textarea:focus{border-color:rgba(74,158,255,.5);box-shadow:0 0 0 3px rgba(74,158,255,.08);}
-    .form-textarea{min-height:120px;}
-
-    /* FOOTER */
-    footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
-    .footer-copy{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);letter-spacing:.08em;}
-    html[lang="ar"] .footer-copy{letter-spacing:0;font-size:.85rem;}
-    .footer-back{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);letter-spacing:.08em;text-decoration:none;text-transform:uppercase;transition:color .2s;cursor:none;}
-    html[lang="ar"] .footer-back{letter-spacing:0;text-transform:none;font-size:.85rem;}
-    .footer-back:hover{color:var(--accent);}
-
-    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-    .reveal{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s ease;}
-    .reveal.visible{opacity:1;transform:translateY(0);}
-
-    @media(max-width:900px){
-      .about-grid,.contact-grid,.skills-container{grid-template-columns:1fr;gap:2.5rem;}
-      .hero-stats{position:static;margin-top:3rem;border-top:1px solid var(--border);padding-top:2rem;}
-      #hero{padding-bottom:4rem;}
-      .about-floating-stat{position:static;margin-top:1rem;display:inline-block;}
-      .nav-links{display:none;}
-    }
-    @media(max-width:600px){
-      .projects-grid{grid-template-columns:1fr;}
-      .soft-skills-grid{grid-template-columns:1fr;}
-      .hero-headline{font-size:2.6rem;}
-    }
+    footer{padding:3rem 5vw;border-top:1px solid var(--border);text-align:center;font-family:var(--font-mono);font-size:.8rem;color:var(--text-muted);}
   </style>
 </head>
 <body>
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- NAV -->
   <nav>
     <div class="nav-logo">Amin <span>Alshehri</span></div>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="#about"      data-i18n="nav.about">About</a></li>
         <li><a href="#experience" data-i18n="nav.exp">Experience</a></li>
-        <li><a href="#projects"   data-i18n="nav.proj">Projects</a></li>
-        <li><a href="#skills"     data-i18n="nav.skills">Skills</a></li>
-        <li><a href="#contact"    data-i18n="nav.contact">Contact</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
       </ul>
       <div class="lang-toggle">
         <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
-        <button class="lang-btn"        id="btnAr" onclick="setLang('ar')">عربي</button>
+        <button class="lang-btn" id="btnAr" onclick="setLang('ar')">عربي</button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section id="hero">
-    <div class="hero-glow"></div><div class="hero-glow-2"></div>
     <div>
-      <div class="hero-label" data-i18n="hero.label">Data Analysis Specialist · Tabuk, Saudi Arabia</div>
+      <div class="hero-label" data-i18n="hero.label">Network Engineer · Jeddah, Saudi Arabia</div>
       <h1 class="hero-headline">
-        <span data-i18n="hero.l1">Turning Raw Data</span><br>
-        <span class="line-accent" data-i18n="hero.l2">Into Actionable</span><br>
-        <span class="line-dim" id="typingTarget" data-i18n="hero.l3">Insights.</span>
+        <span data-i18n="hero.l1">Building Secure</span><br>
+        <span class="line-accent" data-i18n="hero.l2">& Scalable</span><br>
+        <span data-i18n="hero.l3">Networks.</span>
       </h1>
-      <p class="hero-sub" data-i18n="hero.sub">IT graduate specializing in data analysis—transforming complex health and business datasets into clear visualizations and strategic decisions using Python, SQL, and Power BI.</p>
+      <p class="hero-sub" data-i18n="hero.sub">Network Engineer at Jeddah Health Cluster specializing in Cisco infrastructure. Actively pursuing CCNA certification.</p>
       <div class="hero-cta">
-        <a href="#projects" class="btn-primary"   data-i18n="hero.cta1">View Projects</a>
-        <a href="#contact"  class="btn-secondary" data-i18n="hero.cta2">Get in Touch</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item"><div class="stat-num">3<span>+</span></div><div class="stat-label" data-i18n="hero.s1">Technical Tools</div></div>
-        <div class="stat-item"><div class="stat-num">5<span>+</span></div><div class="stat-label" data-i18n="hero.s2">Projects Built</div></div>
-        <div class="stat-item"><div class="stat-num">1<span data-i18n="hero.s3u">yr</span></div><div class="stat-label" data-i18n="hero.s3">Health Sector Training</div></div>
-        <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label" data-i18n="hero.s4">Drive to Learn</div></div>
+        <a href="#experience" class="btn-primary" data-i18n="hero.cta1">View Journey</a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-inner">
-      <div class="about-grid reveal">
-        <div class="about-visual">
-          <div class="about-card">
-            <div class="about-avatar-placeholder">AA</div>
-            <div class="about-card-name" data-i18n="about.name">Amin Alshehri</div>
-            <div class="about-card-role" data-i18n="about.role">Data Analysis Specialist</div>
-            <div class="about-card-tags">
-              <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Power BI</span>
-              <span class="tag">Tableau</span><span class="tag">Excel</span><span class="tag" data-i18n="about.tstats">Statistics</span>
-            </div>
-          </div>
-          <div class="about-floating-stat">
-            <div class="num">Tabuk</div>
-            <div class="lbl" data-i18n="about.cluster">Health Cluster · KSA</div>
-          </div>
+  <section id="experience" class="section-inner">
+    <h2 class="section-title" data-i18n="exp.title">Career Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta" data-i18n="exp.t1m">2026 - Present</div>
+        <div class="timeline-body">
+          <h3 style="color:var(--accent)" data-i18n="exp.t1t">Network Engineer</h3>
+          <p style="margin-bottom:1rem" data-i18n="exp.t1o">Jeddah Health Cluster</p>
+          <ul style="list-style:none; font-size:.9rem; color:var(--text-secondary)">
+            <li data-i18n="exp.t1b1">• Configuring Cisco Catalyst switches & routers.</li>
+            <li data-i18n="exp.t1b2">• Diagnosing L2/L3 issues (VLANs, STP, Routing).</li>
+            <li data-i18n="exp.t1b3">• Implementing ACLs and port security protocols.</li>
+          </ul>
         </div>
-        <div class="about-text">
-          <div class="section-tag" data-i18n="about.tag">About Me</div>
-          <h2 class="section-title" data-i18n="about.title">From IT Foundations<br>to Data-Driven Impact</h2>
-          <p data-i18n="about.p1">I'm <strong>Amin Alshehri</strong>, an IT graduate who discovered a passion for extracting meaning from data. My journey led me to specialize in <span class="highlight">Data Analysis</span>—a discipline at the intersection of technology, logic, and storytelling.</p>
-          <p data-i18n="about.p2">Through my training at the <strong>Tabuk Health Cluster</strong>, I applied data analysis to real-world healthcare challenges—cleaning messy datasets, building dashboards that surface operational insights, and helping decision-makers act on evidence.</p>
-          <p data-i18n="about.p3">My IT foundation gives me a unique edge: I write clean analytical code in <span class="highlight">Python and SQL</span>, and communicate complex findings through <span class="highlight">Power BI and Tableau</span> visualizations.</p>
-          <p data-i18n="about.p4">I believe the best data analyst is not just technically proficient—they're a <strong>translator between data and strategy</strong>.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta" data-i18n="exp.t2m">2023 - 2024</div>
+        <div class="timeline-body">
+          <h3 data-i18n="exp.t2t">IT Intern</h3>
+          <p style="margin-bottom:1rem" data-i18n="exp.t2o">Tabuk Health Cluster</p>
+          <p style="font-size:.9rem; color:var(--text-secondary)" data-i18n="exp.t2b">Supported 100+ devices and managed data backup with 100% success rate.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-inner">
-      <div class="section-tag reveal" data-i18n="exp.tag">Career Path</div>
-      <h2 class="section-title reveal" data-i18n="exp.title">Experience &amp;<br>Education</h2>
-      <p class="section-desc reveal" data-i18n="exp.desc">A chronological journey from academic foundations to applied professional training in data analysis.</p>
-      <div class="timeline reveal">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-meta"  data-i18n="exp.t1m">2023 – 2024 · Internship / Training</div>
-          <div class="timeline-title" data-i18n="exp.t1t">Data Analysis Trainee</div>
-          <div class="timeline-org"   data-i18n="exp.t1o">Tabuk Health Cluster — Ministry of Health, Saudi Arabia</div>
-          <div class="timeline-body"><ul>
-            <li data-i18n="exp.t1b1">Worked on real-world healthcare datasets to uncover operational performance trends and patient flow insights.</li>
-            <li data-i18n="exp.t1b2">Built interactive Power BI dashboards for reporting and decision support across clinical departments.</li>
-            <li data-i18n="exp.t1b3">Applied data cleaning and transformation using Python (pandas, NumPy) and SQL queries.</li>
-            <li data-i18n="exp.t1b4">Collaborated with health management teams to translate findings into actionable recommendations.</li>
-            <li data-i18n="exp.t1b5">Developed data storytelling skills—turning complex metrics into clear visual narratives.</li>
-          </ul></div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot edu"></div>
-          <div class="timeline-meta edu" data-i18n="exp.t2m">2019 – 2023 · Bachelor's Degree</div>
-          <div class="timeline-title"    data-i18n="exp.t2t">Bachelor of Information Technology (IT)</div>
-          <div class="timeline-org"      data-i18n="exp.t2o">University of Tabuk — Tabuk, Saudi Arabia</div>
-          <div class="timeline-body"     data-i18n="exp.t2b">Studied core computer science and information systems disciplines including database management, programming fundamentals, systems analysis, networking, and software engineering. Built a strong technical foundation that later fueled a focused transition into Data Analysis.</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-meta"  data-i18n="exp.t3m">Ongoing · Professional Development</div>
-          <div class="timeline-title" data-i18n="exp.t3t">Data Analysis Certifications</div>
-          <div class="timeline-org"   data-i18n="exp.t3o">Online Platforms (Coursera, DataCamp, etc.)</div>
-          <div class="timeline-body"  data-i18n="exp.t3b">Continuously expanding analytical knowledge through structured online programs covering Python for Data Science, SQL for Analytics, Data Visualization best practices, and Statistical Foundations.</div>
-        </div>
+  <section id="skills" class="section-inner">
+    <h2 class="section-title" data-i18n="sk.title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-name">Cisco IOS & Routing</span>
+        <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
       </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-inner">
-      <div class="section-tag reveal" data-i18n="proj.tag">Portfolio</div>
-      <h2 class="section-title reveal" data-i18n="proj.title">Project<br>Showcase</h2>
-      <p class="section-desc reveal" data-i18n="proj.desc">A selection of data analysis projects demonstrating analytical thinking, technical execution, and insight generation.</p>
-      <div class="projects-grid reveal">
-
-        <div class="project-card">
-          <div class="project-num"   data-i18n="p1n">Project · 01</div>
-          <div class="project-title" data-i18n="p1t">Healthcare KPI Dashboard</div>
-          <div class="project-desc"  data-i18n="p1d">An end-to-end Power BI dashboard tracking patient admission rates, departmental throughput, and resource utilization across Tabuk Health Cluster facilities.</div>
-          <div class="project-tags"><span class="project-tag">Power BI</span><span class="project-tag">DAX</span><span class="project-tag">SQL</span><span class="project-tag" data-i18n="tg.health">Healthcare</span></div>
-          <div class="project-links">
-            <a href="https://github.com/amin-alshehri" target="_blank" class="project-link"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-            <a href="#" class="project-link" data-i18n="livelink">View Live →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num"   data-i18n="p2n">Project · 02</div>
-          <div class="project-title" data-i18n="p2t">Patient Data Pipeline &amp; Analysis</div>
-          <div class="project-desc"  data-i18n="p2d">Python-based ETL pipeline for processing and analyzing anonymized patient records. Automated data cleaning, outlier detection, and statistical summarization.</div>
-          <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">NumPy</span><span class="project-tag">ETL</span></div>
-          <div class="project-links">
-            <a href="https://github.com/amin-alshehri" target="_blank" class="project-link">GitHub</a>
-            <a href="https://kaggle.com" target="_blank" class="project-link">Kaggle →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num"   data-i18n="p3n">Project · 03</div>
-          <div class="project-title" data-i18n="p3t">Sales &amp; Revenue Analysis</div>
-          <div class="project-desc"  data-i18n="p3d">Exploratory data analysis on a multi-year sales dataset. Identified revenue trends, seasonal patterns, and top-performing segments using Python and Matplotlib.</div>
-          <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Tableau</span><span class="project-tag">Matplotlib</span><span class="project-tag">EDA</span></div>
-          <div class="project-links">
-            <a href="https://github.com/amin-alshehri" target="_blank" class="project-link">GitHub</a>
-            <a href="#" class="project-link">Tableau →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num"   data-i18n="p4n">Project · 04</div>
-          <div class="project-title" data-i18n="p4t">SQL Analytics: Hospital Operations</div>
-          <div class="project-desc"  data-i18n="p4d">Complex SQL queries and stored procedures to extract operational intelligence from a relational health database. Covered scheduling patterns and bed occupancy analysis.</div>
-          <div class="project-tags"><span class="project-tag">SQL</span><span class="project-tag">MySQL</span><span class="project-tag" data-i18n="tg.analytics">Analytics</span><span class="project-tag" data-i18n="tg.reporting">Reporting</span></div>
-          <div class="project-links">
-            <a href="https://github.com/amin-alshehri" target="_blank" class="project-link">GitHub</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-num"   data-i18n="p5n">Project · 05</div>
-          <div class="project-title" data-i18n="p5t">Predictive Insights: Excel + Statistics</div>
-          <div class="project-desc"  data-i18n="p5d">Applied descriptive and inferential statistics in Excel to model performance trends and generate regression forecasts. Demonstrates strong statistical foundations.</div>
-          <div class="project-tags"><span class="project-tag">Excel</span><span class="project-tag" data-i18n="tg.stats">Statistics</span><span class="project-tag" data-i18n="tg.regression">Regression</span><span class="project-tag" data-i18n="tg.forecast">Forecasting</span></div>
-          <div class="project-links">
-            <a href="https://github.com/amin-alshehri" target="_blank" class="project-link">GitHub</a>
-          </div>
-        </div>
-
-        <div class="project-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-style:dashed;opacity:0.5;">
-          <div style="font-family:var(--font-mono);font-size:.7rem;letter-spacing:.15em;color:var(--text-muted);text-transform:uppercase;margin-bottom:.75rem;" data-i18n="soon.label">Coming Soon</div>
-          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:.5rem;" data-i18n="soon.title">More Projects</div>
-          <div style="font-size:.82rem;color:var(--text-muted);" data-i18n="soon.sub">Continuously building.<br>Check GitHub for latest work.</div>
-        </div>
-
+      <div class="skill-card">
+        <span class="skill-name">VLANs & STP Configuration</span>
+        <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
       </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-inner">
-      <div class="section-tag reveal" data-i18n="sk.tag">Capabilities</div>
-      <h2 class="section-title reveal" data-i18n="sk.title">Skills Matrix</h2>
-      <p class="section-desc reveal" data-i18n="sk.desc">A structured breakdown of technical proficiency and professional competencies.</p>
-      <div class="skills-container reveal">
-        <div>
-          <div class="skills-group-title" data-i18n="sk.tech">Technical Skills</div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name">Python (pandas, NumPy, Matplotlib)</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name" data-i18n="sk.sql">SQL &amp; Database Querying</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name">Power BI &amp; DAX</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name">Tableau</span><span class="skill-pct">72%</span></div><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name" data-i18n="sk.excel">Microsoft Excel (Advanced)</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name" data-i18n="sk.stats">Statistics &amp; Data Modeling</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
-          <div class="tools-grid">
-            <span class="tool-badge">Python</span><span class="tool-badge">SQL</span><span class="tool-badge">Power BI</span>
-            <span class="tool-badge">Tableau</span><span class="tool-badge">Excel</span><span class="tool-badge">MySQL</span>
-            <span class="tool-badge">pandas</span><span class="tool-badge">NumPy</span><span class="tool-badge">Matplotlib</span>
-            <span class="tool-badge">Seaborn</span><span class="tool-badge">Git</span><span class="tool-badge">DAX</span>
-          </div>
-        </div>
-        <div>
-          <div class="skills-group-title" data-i18n="sk.soft">Soft Skills</div>
-          <div class="soft-skills-grid">
-            <div class="soft-skill" data-i18n="sk.s1">Analytical Thinking</div>
-            <div class="soft-skill" data-i18n="sk.s2">Data Storytelling</div>
-            <div class="soft-skill" data-i18n="sk.s3">Problem Solving</div>
-            <div class="soft-skill" data-i18n="sk.s4">Attention to Detail</div>
-            <div class="soft-skill" data-i18n="sk.s5">Critical Thinking</div>
-            <div class="soft-skill" data-i18n="sk.s6">Communication</div>
-            <div class="soft-skill" data-i18n="sk.s7">Team Collaboration</div>
-            <div class="soft-skill" data-i18n="sk.s8">Time Management</div>
-            <div class="soft-skill" data-i18n="sk.s9">Self-Learning</div>
-            <div class="soft-skill" data-i18n="sk.s10">Adaptability</div>
-            <div class="soft-skill" data-i18n="sk.s11">Arabic (Native)</div>
-            <div class="soft-skill" data-i18n="sk.s12">English (Professional)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-inner">
-      <div class="contact-grid reveal">
-        <div class="contact-info">
-          <div class="section-tag" data-i18n="ct.tag">Get in Touch</div>
-          <h2 class="section-title" data-i18n="ct.title">Let's Build<br>Something Together</h2>
-          <p data-i18n="ct.desc">Whether you're looking for a data analyst to join your team, collaborate on a project, or simply want to discuss data—I'm open to conversations that drive impact.</p>
-          <div class="contact-links">
-            <a href="https://www.linkedin.com/in/amin-alshehri-98624b326/" target="_blank" class="contact-link">
-              <div class="contact-link-icon"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
-              LinkedIn — amin-alshehri-98624b326
-            </a>
-            <a href="https://github.com/amin-alshehri" target="_blank" class="contact-link">
-              <div class="contact-link-icon"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
-              <span data-i18n="ct.gh">GitHub — Projects &amp; Code</span>
-            </a>
-            <a href="https://kaggle.com" target="_blank" class="contact-link">
-              <div class="contact-link-icon" style="color:var(--accent-2)"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.334z"/></svg></div>
-              <span data-i18n="ct.kg">Kaggle — Data Notebooks</span>
-            </a>
-          </div>
-        </div>
-        <div class="contact-form">
-          <div class="form-group"><label class="form-label" data-i18n="ct.fn">Full Name</label><input type="text" class="form-input" data-ph="ct.fn.ph" placeholder="Your name"/></div>
-          <div class="form-group"><label class="form-label" data-i18n="ct.em">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"/></div>
-          <div class="form-group"><label class="form-label" data-i18n="ct.sb">Subject</label><input type="text" class="form-input" data-ph="ct.sb.ph" placeholder="Collaboration / Opportunity / Other"/></div>
-          <div class="form-group"><label class="form-label" data-i18n="ct.mg">Message</label><textarea class="form-textarea" data-ph="ct.mg.ph" placeholder="Tell me about the project or opportunity..."></textarea></div>
-          <button class="btn-primary" style="border:none;width:100%;padding:1rem;font-size:.82rem;" data-i18n="ct.send">Send Message →</button>
-        </div>
+      <div class="skill-card">
+        <span class="skill-name">Network Security (ACLs)</span>
+        <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-copy" data-i18n="ft.copy">© 2025 Amin Alshehri — Data Analysis Specialist</div>
-    <a href="#hero" class="footer-back" data-i18n="ft.top">↑ Back to Top</a>
+    <p data-i18n="ft.copy">© 2026 Amin Alshehri — Network Engineer (CCNA in Progress)</p>
   </footer>
 
   <script>
-  /* =========================================================
-     TRANSLATIONS
-  ========================================================= */
   const T = {
     en: {
-      /* nav */'nav.about':'About','nav.exp':'Experience','nav.proj':'Projects','nav.skills':'Skills','nav.contact':'Contact',
-      /* hero */'hero.label':'Data Analysis Specialist · Tabuk, Saudi Arabia','hero.l1':'Turning Raw Data','hero.l2':'Into Actionable','hero.l3':'Insights.','hero.sub':'IT graduate specializing in data analysis—transforming complex health and business datasets into clear visualizations and strategic decisions using Python, SQL, and Power BI.','hero.cta1':'View Projects','hero.cta2':'Get in Touch','hero.s1':'Technical Tools','hero.s2':'Projects Built','hero.s3u':'yr','hero.s3':'Health Sector Training','hero.s4':'Drive to Learn',
-      /* about */'about.tag':'About Me','about.name':'Amin Alshehri','about.role':'Data Analysis Specialist','about.tstats':'Statistics','about.cluster':'Health Cluster · KSA','about.title':'From IT Foundations<br>to Data-Driven Impact','about.p1':'I\'m <strong>Amin Alshehri</strong>, an IT graduate who discovered a passion for extracting meaning from data. My journey led me to specialize in <span class="highlight">Data Analysis</span>—a discipline at the intersection of technology, logic, and storytelling.','about.p2':'Through my training at the <strong>Tabuk Health Cluster</strong>, I applied data analysis to real-world healthcare challenges—cleaning messy datasets, building dashboards that surface operational insights, and helping decision-makers act on evidence.','about.p3':'My IT foundation gives me a unique edge: I write clean analytical code in <span class="highlight">Python and SQL</span>, and communicate complex findings through <span class="highlight">Power BI and Tableau</span> visualizations.','about.p4':'I believe the best data analyst is not just technically proficient—they\'re a <strong>translator between data and strategy</strong>.',
-      /* exp */'exp.tag':'Career Path','exp.title':'Experience &amp;<br>Education','exp.desc':'A chronological journey from academic foundations to applied professional training in data analysis.','exp.t1m':'2023 – 2024 · Internship / Training','exp.t1t':'Data Analysis Trainee','exp.t1o':'Tabuk Health Cluster — Ministry of Health, Saudi Arabia','exp.t1b1':'Worked on real-world healthcare datasets to uncover operational performance trends and patient flow insights.','exp.t1b2':'Built interactive Power BI dashboards for reporting and decision support across clinical departments.','exp.t1b3':'Applied data cleaning and transformation using Python (pandas, NumPy) and SQL queries.','exp.t1b4':'Collaborated with health management teams to translate findings into actionable recommendations.','exp.t1b5':'Developed data storytelling skills—turning complex metrics into clear visual narratives.','exp.t2m':'2019 – 2023 · Bachelor\'s Degree','exp.t2t':'Bachelor of Information Technology (IT)','exp.t2o':'University of Tabuk — Tabuk, Saudi Arabia','exp.t2b':'Studied core computer science and information systems disciplines including database management, programming fundamentals, systems analysis, networking, and software engineering. Built a strong technical foundation that fueled a focused transition into Data Analysis.','exp.t3m':'Ongoing · Professional Development','exp.t3t':'Data Analysis Certifications','exp.t3o':'Online Platforms (Coursera, DataCamp, etc.)','exp.t3b':'Continuously expanding analytical knowledge through structured online programs covering Python for Data Science, SQL for Analytics, Data Visualization best practices, and Statistical Foundations.',
-      /* proj */'proj.tag':'Portfolio','proj.title':'Project<br>Showcase','proj.desc':'A selection of data analysis projects demonstrating analytical thinking, technical execution, and insight generation.','p1n':'Project · 01','p1t':'Healthcare KPI Dashboard','p1d':'An end-to-end Power BI dashboard tracking patient admission rates, departmental throughput, and resource utilization across Tabuk Health Cluster facilities.','p2n':'Project · 02','p2t':'Patient Data Pipeline &amp; Analysis','p2d':'Python-based ETL pipeline for processing and analyzing anonymized patient records. Automated data cleaning, outlier detection, and statistical summarization.','p3n':'Project · 03','p3t':'Sales &amp; Revenue Analysis','p3d':'Exploratory data analysis on a multi-year sales dataset. Identified revenue trends, seasonal patterns, and top-performing segments using Python and Matplotlib.','p4n':'Project · 04','p4t':'SQL Analytics: Hospital Operations','p4d':'Complex SQL queries and stored procedures to extract operational intelligence from a relational health database. Covered scheduling patterns and bed occupancy analysis.','p5n':'Project · 05','p5t':'Predictive Insights: Excel + Statistics','p5d':'Applied descriptive and inferential statistics in Excel to model performance trends and generate regression forecasts. Demonstrates strong statistical foundations.','livelink':'View Live →','tg.health':'Healthcare','tg.analytics':'Analytics','tg.reporting':'Reporting','tg.stats':'Statistics','tg.regression':'Regression','tg.forecast':'Forecasting','soon.label':'Coming Soon','soon.title':'More Projects','soon.sub':'Continuously building.<br>Check GitHub for latest work.',
-      /* skills */'sk.tag':'Capabilities','sk.title':'Skills Matrix','sk.desc':'A structured breakdown of technical proficiency and professional competencies.','sk.tech':'Technical Skills','sk.soft':'Soft Skills','sk.sql':'SQL &amp; Database Querying','sk.excel':'Microsoft Excel (Advanced)','sk.stats':'Statistics &amp; Data Modeling','sk.s1':'Analytical Thinking','sk.s2':'Data Storytelling','sk.s3':'Problem Solving','sk.s4':'Attention to Detail','sk.s5':'Critical Thinking','sk.s6':'Communication','sk.s7':'Team Collaboration','sk.s8':'Time Management','sk.s9':'Self-Learning','sk.s10':'Adaptability','sk.s11':'Arabic (Native)','sk.s12':'English (Professional)',
-      /* contact */'ct.tag':'Get in Touch','ct.title':'Let\'s Build<br>Something Together','ct.desc':'Whether you\'re looking for a data analyst to join your team, collaborate on a project, or simply want to discuss data—I\'m open to conversations that drive impact.','ct.gh':'GitHub — Projects &amp; Code','ct.kg':'Kaggle — Data Notebooks','ct.fn':'Full Name','ct.fn.ph':'Your name','ct.em':'Email Address','ct.sb':'Subject','ct.sb.ph':'Collaboration / Opportunity / Other','ct.mg':'Message','ct.mg.ph':'Tell me about the project or opportunity...','ct.send':'Send Message →',
-      /* footer */'ft.copy':'© 2025 Amin Alshehri — Data Analysis Specialist','ft.top':'↑ Back to Top'
+      "nav.exp": "Experience", "nav.skills": "Skills",
+      "hero.label": "Network Engineer · Jeddah, Saudi Arabia",
+      "hero.l1": "Building Secure", "hero.l2": "& Scalable", "hero.l3": "Networks.",
+      "hero.sub": "Network Engineer at Jeddah Health Cluster specializing in Cisco infrastructure. Actively pursuing CCNA certification.",
+      "hero.cta1": "View Journey",
+      "exp.title": "Career Journey",
+      "exp.t1m": "2026 - Present", "exp.t1t": "Network Engineer", "exp.t1o": "Jeddah Health Cluster",
+      "exp.t1b1": "• Configuring Cisco Catalyst switches & routers.",
+      "exp.t1b2": "• Diagnosing L2/L3 issues (VLANs, STP, Routing).",
+      "exp.t1b3": "• Implementing ACLs and port security protocols.",
+      "exp.t2m": "2023 - 2024", "exp.t2t": "IT Intern", "exp.t2o": "Tabuk Health Cluster",
+      "exp.t2b": "Supported 100+ devices with 100% data recovery success.",
+      "sk.title": "Technical Skills",
+      "ft.copy": "© 2026 Amin Alshehri — Network Engineer (CCNA in Progress)"
     },
     ar: {
-      /* nav */'nav.about':'عنّي','nav.exp':'الخبرة','nav.proj':'المشاريع','nav.skills':'المهارات','nav.contact':'تواصل',
-      /* hero */'hero.label':'متخصص تحليل البيانات · تبوك، المملكة العربية السعودية','hero.l1':'تحويل البيانات الخام','hero.l2':'إلى رؤى قابلة','hero.l3':'للتنفيذ.','hero.sub':'خريج تقنية معلومات متخصص في تحليل البيانات—أحوّل مجموعات البيانات الصحية والتجارية المعقدة إلى تصورات واضحة وقرارات استراتيجية باستخدام Python وSQL وPower BI.','hero.cta1':'عرض المشاريع','hero.cta2':'تواصل معي','hero.s1':'أدوات تقنية','hero.s2':'مشاريع منجزة','hero.s3u':'سنة','hero.s3':'تدريب في القطاع الصحي','hero.s4':'شغف بالتعلم',
-      /* about */'about.tag':'عنّي','about.name':'أمين الشهري','about.role':'متخصص تحليل البيانات','about.tstats':'إحصاء','about.cluster':'مجموعة تبوك الصحية · السعودية','about.title':'من أسس تقنية المعلومات<br>إلى التأثير المبني على البيانات','about.p1':'أنا <strong>أمين الشهري</strong>، خريج تقنية معلومات اكتشف شغفًا عميقًا باستخلاص المعنى من البيانات. قادني هذا الشغف إلى التخصص في <span class="highlight">تحليل البيانات</span>—مجال يجمع بين التقنية والمنطق وفن رواية الأرقام.','about.p2':'خلال تدريبي في <strong>مجموعة تبوك الصحية</strong>، طبّقت تحليل البيانات على تحديات رعاية صحية حقيقية—تنظيف مجموعات البيانات، وبناء لوحات معلومات تكشف الرؤى التشغيلية، ومساعدة متخذي القرار على البناء على الأدلة.','about.p3':'أساسي في تقنية المعلومات يمنحني ميزة فريدة: أكتب أكوادًا تحليلية نظيفة في <span class="highlight">Python وSQL</span>، وأوصل النتائج المعقدة عبر <span class="highlight">Power BI وTableau</span>.','about.p4':'أعتقد أن أفضل محلل بيانات لا يكتفي بالكفاءة التقنية—بل يكون <strong>مترجمًا بين البيانات والاستراتيجية</strong>.',
-      /* exp */'exp.tag':'المسار المهني','exp.title':'الخبرة<br>والتعليم','exp.desc':'رحلة زمنية من الأسس الأكاديمية إلى التدريب المهني التطبيقي في تحليل البيانات.','exp.t1m':'٢٠٢٣ – ٢٠٢٤ · تدريب ميداني','exp.t1t':'متدرب تحليل بيانات','exp.t1o':'مجموعة تبوك الصحية — وزارة الصحة، المملكة العربية السعودية','exp.t1b1':'عملت على مجموعات بيانات صحية حقيقية للكشف عن اتجاهات الأداء التشغيلي ورؤى تدفق المرضى.','exp.t1b2':'بنيت لوحات معلومات Power BI تفاعلية لإعداد التقارير ودعم القرار في الأقسام السريرية.','exp.t1b3':'طبّقت تقنيات تنظيف البيانات وتحويلها باستخدام Python (pandas, NumPy) واستعلامات SQL.','exp.t1b4':'تعاونت مع فرق إدارة الصحة لترجمة النتائج التحليلية إلى توصيات قابلة للتنفيذ.','exp.t1b5':'طوّرت مهارات سرد البيانات—تحويل المقاييس المعقدة إلى روايات بصرية واضحة.','exp.t2m':'٢٠١٩ – ٢٠٢٣ · بكالوريوس','exp.t2t':'بكالوريوس تقنية المعلومات','exp.t2o':'جامعة تبوك — تبوك، المملكة العربية السعودية','exp.t2b':'درست تخصصات علوم الحاسب ونظم المعلومات الأساسية بما فيها إدارة قواعد البيانات وأسس البرمجة وتحليل الأنظمة والشبكات وهندسة البرمجيات. بنيت أساسًا تقنيًا متينًا أسّس للتحول المتخصص نحو تحليل البيانات.','exp.t3m':'مستمر · التطوير المهني','exp.t3t':'شهادات تحليل البيانات','exp.t3o':'منصات إلكترونية (Coursera، DataCamp، وغيرها)','exp.t3b':'أوسّع باستمرار معرفتي التحليلية عبر برامج منظمة تشمل Python لعلوم البيانات وSQL للتحليل وأفضل ممارسات تصور البيانات والأسس الإحصائية.',
-      /* proj */'proj.tag':'معرض الأعمال','proj.title':'عرض<br>المشاريع','proj.desc':'مجموعة مختارة من مشاريع تحليل البيانات تُظهر التفكير التحليلي والتنفيذ التقني وتوليد الرؤى.','p1n':'مشروع · ٠١','p1t':'لوحة معلومات مؤشرات الأداء الصحية','p1d':'لوحة معلومات Power BI شاملة لتتبع معدلات دخول المرضى والإنتاجية القسمية واستخدام الموارد في مرافق مجموعة تبوك الصحية.','p2n':'مشروع · ٠٢','p2t':'خط أنابيب بيانات المرضى وتحليلها','p2d':'خط أنابيب ETL مبني على Python لمعالجة وتحليل سجلات المرضى المجهولة الهوية مع أتمتة تنظيف البيانات وكشف القيم الشاذة والتلخيص الإحصائي.','p3n':'مشروع · ٠٣','p3t':'تحليل المبيعات والإيرادات','p3d':'تحليل استكشافي لبيانات مبيعات متعددة السنوات. تحديد اتجاهات الإيرادات والأنماط الموسمية والشرائح الأعلى أداءً باستخدام Python وMatplotlib.','p4n':'مشروع · ٠٤','p4t':'تحليلات SQL: عمليات المستشفى','p4d':'استعلامات SQL معقدة وإجراءات مخزنة لاستخراج المعلومات التشغيلية من قاعدة بيانات صحية علائقية. تغطية أنماط الجدولة وتحليل إشغال الأسرة.','p5n':'مشروع · ٠٥','p5t':'رؤى تنبؤية: Excel + الإحصاء','p5d':'تطبيق الإحصاء الوصفي والاستدلالي في Excel لنمذجة اتجاهات الأداء وتوليد توقعات انحدار بسيطة.','livelink':'عرض مباشر ←','tg.health':'رعاية صحية','tg.analytics':'تحليلات','tg.reporting':'تقارير','tg.stats':'إحصاء','tg.regression':'انحدار','tg.forecast':'توقعات','soon.label':'قريبًا','soon.title':'مزيد من المشاريع','soon.sub':'البناء مستمر.<br>تابع GitHub لأحدث الأعمال.',
-      /* skills */'sk.tag':'الكفاءات','sk.title':'مصفوفة المهارات','sk.desc':'تصنيف منظم للكفاءة التقنية والمهارات المهنية.','sk.tech':'المهارات التقنية','sk.soft':'المهارات الشخصية','sk.sql':'SQL واستعلامات قواعد البيانات','sk.excel':'Microsoft Excel (متقدم)','sk.stats':'الإحصاء ونمذجة البيانات','sk.s1':'التفكير التحليلي','sk.s2':'سرد البيانات','sk.s3':'حل المشكلات','sk.s4':'الاهتمام بالتفاصيل','sk.s5':'التفكير النقدي','sk.s6':'التواصل','sk.s7':'العمل الجماعي','sk.s8':'إدارة الوقت','sk.s9':'التعلم الذاتي','sk.s10':'التكيّف','sk.s11':'العربية (لغة أم)','sk.s12':'الإنجليزية (مهنية)',
-      /* contact */'ct.tag':'تواصل معي','ct.title':'لنبني<br>شيئًا معًا','ct.desc':'سواء كنت تبحث عن محلل بيانات للانضمام لفريقك، أو التعاون في مشروع، أو مجرد مناقشة البيانات—أنا منفتح على المحادثات التي تُحدث فارقًا.','ct.gh':'GitHub — المشاريع والأكواد','ct.kg':'Kaggle — دفاتر البيانات','ct.fn':'الاسم الكامل','ct.fn.ph':'اسمك','ct.em':'البريد الإلكتروني','ct.sb':'الموضوع','ct.sb.ph':'تعاون / فرصة عمل / أخرى','ct.mg':'الرسالة','ct.mg.ph':'أخبرني عن المشروع أو الفرصة...','ct.send':'إرسال الرسالة ←',
-      /* footer */'ft.copy':'© ٢٠٢٥ أمين الشهري — متخصص تحليل البيانات','ft.top':'↑ العودة للأعلى'
+      "nav.exp": "الخبرة", "nav.skills": "المهارات",
+      "hero.label": "مهندس شبكات · جدة، المملكة العربية السعودية",
+      "hero.l1": "بناء شبكات", "hero.l2": "آمنة وقابلة", "hero.l3": "للتوسع.",
+      "hero.sub": "مهندس شبكات في تجمع جدة الصحي متخصص في بنية سيسكو التحتية. أعمل حالياً على نيل شهادة CCNA.",
+      "hero.cta1": "عرض المسار المهني",
+      "exp.title": "المسار المهني",
+      "exp.t1m": "٢٠٢٦ - الآن", "exp.t1t": "مهندس شبكات", "exp.t1o": "تجمع جدة الصحي",
+      "exp.t1b1": "• إعداد وصيانة سويتشات وراوترات سيسكو.",
+      "exp.t1b2": "• تشخيص مشكلات الربط (VLANs, STP, Routing).",
+      "exp.t1b3": "• تطبيق بروتوكولات الأمان (ACLs) وحماية البنية التحتية.",
+      "exp.t2m": "٢٠٢٣ - ٢٠٢٤", "exp.t2t": "متدرب تقني", "exp.t2o": "تجمع تبوك الصحي",
+      "exp.t2b": "دعم أكثر من ١٠٠ جهاز مع نجاح استعادة البيانات بنسبة ١٠٠٪.",
+      "sk.title": "المهارات التقنية",
+      "ft.copy": "© ٢٠٢٦ أمين الشهري — مهندس شبكات (CCNA قيد التحضير)"
     }
   };
 
-  /* =========================================================
-     LANGUAGE SWITCHER
-  ========================================================= */
   let lang = 'en';
-  let typingRunning = true;
-
-  const typingPhrases = {
-    en: ['Insights.','Strategy.','Decisions.','Value.'],
-    ar: ['للتنفيذ.','للاستراتيجية.','للقرار.','للقيمة.']
-  };
-
   function setLang(l) {
-    if (l === lang) return;
     lang = l;
     document.documentElement.lang = l;
-    document.documentElement.dir  = l === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
     document.getElementById('btnEn').classList.toggle('active', l === 'en');
     document.getElementById('btnAr').classList.toggle('active', l === 'ar');
-
-    // Translate all data-i18n elements
     document.querySelectorAll('[data-i18n]').forEach(el => {
-      const v = T[l][el.getAttribute('data-i18n')];
-      if (v !== undefined) el.innerHTML = v;
+      el.innerHTML = T[l][el.getAttribute('data-i18n')];
     });
-
-    // Translate placeholders (data-ph attribute)
-    document.querySelectorAll('[data-ph]').forEach(el => {
-      const v = T[l][el.getAttribute('data-ph')];
-      if (v !== undefined) el.placeholder = v;
-    });
-
-    document.title = l === 'ar'
-      ? 'أمين الشهري — متخصص تحليل البيانات'
-      : 'Amin Alshehri — Data Analysis Specialist';
-
-    // Restart typing effect
-    typingRunning = false;
-    setTimeout(() => { typingRunning = true; runTyping(); }, 200);
   }
 
-  /* =========================================================
-     TYPING EFFECT
-  ========================================================= */
-  function runTyping() {
-    const el = document.getElementById('typingTarget');
-    if (!el) return;
-    const phrases = typingPhrases[lang];
-    let pi = 0, ci = 0, del = false;
-    function tick() {
-      if (!typingRunning) return;
-      const p = phrases[pi];
-      el.textContent = del ? p.substring(0, ci--) : p.substring(0, ci++);
-      if (!del && ci === p.length + 1) { del = true; setTimeout(tick, 1800); return; }
-      if (del && ci < 0) { del = false; pi = (pi + 1) % phrases.length; }
-      setTimeout(tick, del ? 55 : 90);
-    }
-    tick();
-  }
-  setTimeout(runTyping, 2500);
-
-  /* =========================================================
-     CUSTOM CURSOR
-  ========================================================= */
   const cur = document.getElementById('cursor');
   const rng = document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
-  (function loop(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; rng.style.left=rx+'px'; rng.style.top=ry+'px'; requestAnimationFrame(loop); })();
-  document.querySelectorAll('a,button').forEach(el => {
-    el.addEventListener('mouseenter',()=>{ cur.style.transform='translate(-50%,-50%) scale(2.5)'; rng.style.opacity='0'; });
-    el.addEventListener('mouseleave',()=>{ cur.style.transform='translate(-50%,-50%) scale(1)'; rng.style.opacity='.5'; });
-  });
-
-  /* =========================================================
-     SCROLL REVEAL
-  ========================================================= */
-  new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*80); });
-  },{threshold:.12}).observe.call(
-    new IntersectionObserver((entries)=>{
-      entries.forEach((e,i)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*80); });
-    },{threshold:.12}),
-    document.body
-  );
-  // Simpler init:
-  const ro = new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*80); });
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-
-  /* SKILL BARS */
-  const so = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.style.animationPlayState='running'; });
-  },{threshold:.3});
-  document.querySelectorAll('.skill-fill').forEach(b=>{ b.style.animationPlayState='paused'; so.observe(b); });
-
-  /* NAV SCROLL */
-  window.addEventListener('scroll',()=>{
-    document.querySelector('nav').style.background=window.scrollY>60?'rgba(11,20,38,.97)':'rgba(11,20,38,.85)';
-  });
+  (function loop(){ rx+=(mx-rx)*.15; ry+=(my-ry)*.15; rng.style.left=rx+'px'; rng.style.top=ry+'px'; requestAnimationFrame(loop); })();
   </script>
 </body>
 </html>
