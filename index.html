@@ -14,7 +14,7 @@
 :root {
   --bg:          #050d1a;
   --bg-2:        #071426;
-  --bg-panel:    rgba(6,20,45,0.75); 
+  --bg-panel:    rgba(6,20,45,0.75);
   --blue:        #00aaff;
   --blue-dim:    rgba(0,170,255,0.15);
   --blue-glow:   rgba(0,170,255,0.35);
@@ -446,6 +446,59 @@ html[lang="ar"] .course-name{font-size:.88rem;}
 html[lang="ar"] .course-meta{letter-spacing:0;font-family:var(--font-body);font-size:.74rem;}
 
 /* ═══════════════════════════════════════════════
+   SCE FEATURED CERT CARD
+═══════════════════════════════════════════════ */
+.sce-card{
+  display:flex;align-items:center;gap:1.75rem;
+  background:var(--glass);
+  border:1px solid rgba(212,175,55,0.35);
+  border-radius:10px;padding:1.5rem 1.75rem;
+  margin-bottom:1.75rem;
+  position:relative;overflow:hidden;
+  transition:border-color .3s,box-shadow .3s;
+}
+.sce-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#d4af37,#f0d060,transparent);
+}
+.sce-card:hover{
+  border-color:rgba(212,175,55,.6);
+  box-shadow:0 8px 32px rgba(212,175,55,.12);
+}
+.sce-badge{
+  flex-shrink:0;width:52px;height:52px;
+  background:linear-gradient(135deg,rgba(212,175,55,.2),rgba(212,175,55,.05));
+  border:1px solid rgba(212,175,55,.4);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+}
+.sce-body{flex:1;min-width:0;}
+.sce-issuer{
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:#d4af37;margin-bottom:.3rem;
+}
+html[lang="ar"] .sce-issuer{letter-spacing:0;text-transform:none;font-size:.75rem;font-family:var(--font-body);}
+.sce-name{
+  font-family:var(--font-display);font-size:1rem;font-weight:700;
+  color:var(--text-hi);margin-bottom:.3rem;line-height:1.3;
+}
+html[lang="ar"] .sce-name{font-family:var(--font-body);letter-spacing:0;line-height:1.5;}
+.sce-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem;}
+.sce-chip{
+  font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;
+  padding:.22rem .65rem;border:1px solid rgba(212,175,55,.35);border-radius:3px;
+  color:#d4af37;background:rgba(212,175,55,.07);
+}
+html[lang="ar"] .sce-chip{letter-spacing:0;font-family:var(--font-body);font-size:.72rem;}
+.sce-validity{font-size:.75rem;color:var(--text-mid);}
+html[lang="ar"] .sce-validity{font-size:.8rem;}
+.sce-validity strong{color:#d4af37;}
+.sce-membership-no{
+  font-family:var(--font-mono);font-size:.6rem;
+  color:var(--text-lo);margin-top:.3rem;letter-spacing:.06em;
+}
+html[lang="ar"] .sce-membership-no{letter-spacing:0;font-family:var(--font-body);font-size:.72rem;}
+
+/* ═══════════════════════════════════════════════
    CONTACT
 ═══════════════════════════════════════════════ */
 #contact{background:var(--bg-2);}
@@ -791,6 +844,24 @@ html[lang="ar"] .ft-top{letter-spacing:0;font-family:var(--font-body);font-size:
         <div class="edu-label" data-i18n="edu.deg.label">Bachelor's Degree</div>
         <div class="edu-degree" data-i18n="edu.deg.title">Bachelor of Information Technology</div>
         <div class="edu-inst" data-i18n="edu.deg.inst">University of Tabuk · 2026</div>
+        <!-- ✦ SCE Membership Certificate — Featured Card ✦ -->
+        <div class="sce-card">
+          <div class="sce-badge">🏛️</div>
+          <div class="sce-body">
+            <div class="sce-issuer" data-i18n="sce.issuer">Saudi Council of Engineers (SCE)</div>
+            <div class="sce-name" data-i18n="sce.name">SCE Membership — ICT Specialist</div>
+            <div class="sce-meta">
+              <span class="sce-chip" data-i18n="sce.cat">Specialist</span>
+              <span class="sce-chip" data-i18n="sce.spec">Information & Communication Technology</span>
+              <span class="sce-chip" data-i18n="sce.date">Feb 2026</span>
+            </div>
+            <div class="sce-validity" data-i18n="sce.valid">
+              Valid until: <strong>18 February 2027</strong>
+            </div>
+            <div class="sce-membership-no" data-i18n="sce.memno">Membership No. 1218739 · Digitally Signed</div>
+          </div>
+        </div>
+
         <div class="cert-list">
           <div class="cert-item pending">
             <span class="cert-icon">⏳</span>
@@ -945,6 +1016,13 @@ const T = {
     'cert.ccna':'Cisco Certified Network Associate (CCNA)','cert.ccna.s':'In Progress',
     'cert.etra':'1st Place — ETRA Networking Bootcamp',
     'cert.adobe':'2nd Place — Adobe After Effects Competition',
+    'sce.issuer': 'Saudi Council of Engineers (SCE)',
+    'sce.name':   'SCE Membership Certificate — ICT Specialist',
+    'sce.cat':    'Category: Specialist',
+    'sce.spec':   'Information &amp; Communication Technology',
+    'sce.date':   'Issued: February 2026',
+    'sce.valid':  'Valid until: <strong>18 February 2027</strong>',
+    'sce.memno':  'Membership No. 1218739 · Digitally Signed',
     'edu.courses.label':'Courses & Training',
     'co.c1':'Introduction to Databases (SQL)','co.c2':'Power BI 103 (Intermediate)',
     'co.c3':'Introduction to Data Analysis','co.c4':'Full-Stack Web Development',
@@ -1057,6 +1135,13 @@ const T = {
     'cert.ccna.s':       'قيد الإعداد',
     'cert.etra':         'المركز الأول — معسكر ETRA التدريبي لهندسة الشبكات',
     'cert.adobe':        'المركز الثاني — مسابقة Adobe After Effects الجامعية',
+    'sce.issuer': 'الهيئة السعودية للمهندسين (SCE)',
+    'sce.name':   'شهادة عضوية الهيئة السعودية للمهندسين — أخصائي تقنية المعلومات',
+    'sce.cat':    'فئة العضوية: أخصائي',
+    'sce.spec':   'تخصص: تقنية المعلومات والاتصالات',
+    'sce.date':   'تاريخ الإصدار: فبراير ٢٠٢٦',
+    'sce.valid':  'الشهادة سارية حتى: <strong>١٨ فبراير ٢٠٢٧</strong>',
+    'sce.memno':  'رقم العضوية: ١٢١٨٧٣٩ · موقَّعة رقمياً',
     'edu.courses.label': 'الدورات التدريبية',
     'co.c1': 'مقدمة في قواعد البيانات (SQL)',
     'co.c2': 'Power BI 103 — المستوى المتوسط',
