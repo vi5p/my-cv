@@ -171,7 +171,7 @@ html[lang="en"] .hero-text-col { padding: 6rem 5vw 4rem 6vw; }
   color: var(--gold);
   margin-bottom: 1.5rem;
   display: flex; align-items: center; gap: 0.75rem;
-  opacity: 0; animation: fadeIn 0.8s 0.2s forwards;
+  animation: fadeIn 0.8s 0.2s both;
 }
 html[lang="ar"] .hero-eyebrow {
   font-family: var(--ff-ui);
@@ -190,7 +190,7 @@ html[lang="ar"] .hero-eyebrow {
   color: var(--ink);
   letter-spacing: -0.02em;
   margin-bottom: 0.3rem;
-  opacity: 0; animation: fadeIn 0.9s 0.35s forwards;
+  animation: fadeIn 0.9s 0.35s both;
 }
 .hero-name-ar {
   font-family: var(--ff-ar);
@@ -199,13 +199,13 @@ html[lang="ar"] .hero-eyebrow {
   line-height: 1.1;
   color: var(--ink);
   margin-bottom: 2rem;
-  opacity: 0; animation: fadeIn 0.9s 0.45s forwards;
+  animation: fadeIn 0.9s 0.45s both;
 }
 .hero-divider {
   width: 48px; height: 1px;
   background: var(--gold);
   margin-bottom: 1.5rem;
-  opacity: 0; animation: expandW 0.8s 0.6s forwards;
+  animation: expandW 0.8s 0.6s both;
 }
 html[lang="ar"] .hero-divider { margin-right: 0; }
 @keyframes expandW { from { width: 0; opacity: 0; } to { width: 48px; opacity: 1; } }
@@ -215,7 +215,7 @@ html[lang="ar"] .hero-divider { margin-right: 0; }
   font-size: 0.88rem; font-weight: 500;
   color: var(--ink-2);
   margin-bottom: 1rem;
-  opacity: 0; animation: fadeIn 0.8s 0.7s forwards;
+  animation: fadeIn 0.8s 0.7s both;
 }
 html[lang="en"] .hero-title { font-family: var(--ff-sm); font-size: 0.82rem; letter-spacing: 0.04em; }
 .hero-desc {
@@ -223,13 +223,13 @@ html[lang="en"] .hero-title { font-family: var(--ff-sm); font-size: 0.82rem; let
   color: var(--ink-3);
   max-width: 420px;
   margin-bottom: 2.5rem;
-  opacity: 0; animation: fadeIn 0.8s 0.85s forwards;
+  animation: fadeIn 0.8s 0.85s both;
 }
 html[lang="en"] .hero-desc { font-family: var(--ff-sm); font-size: 0.84rem; line-height: 1.85; }
 
 .hero-ctas {
   display: flex; gap: 1rem; flex-wrap: wrap;
-  opacity: 0; animation: fadeIn 0.8s 1s forwards;
+  animation: fadeIn 0.8s 1s both;
 }
 .btn-primary {
   font-family: var(--ff-ui);
@@ -258,7 +258,7 @@ html[lang="en"] .btn-ghost { font-family: var(--ff-sm); letter-spacing: 0.06em; 
   display: flex; gap: 2rem;
   margin-top: 3rem; padding-top: 2rem;
   border-top: 1px solid var(--line);
-  opacity: 0; animation: fadeIn 0.8s 1.1s forwards;
+  animation: fadeIn 0.8s 1.1s both;
 }
 .hst { }
 .hst-num {
@@ -751,7 +751,8 @@ html[lang="ar"] .ft-top { font-family: var(--ff-ui); font-size: 0.72rem; }
 
 /* ── REVEAL ── */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.hero-eyebrow, .hero-name-ar, .hero-name-en, .hero-divider, .hero-title, .hero-desc, .hero-ctas, .hero-stats-row { opacity: 1 !important; }
+.reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.vis { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 900px) { .nav-links { display: none; } }
@@ -1264,7 +1265,4 @@ const ro = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
 // Skill bars
-const so = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.style.animationPlayState = 'running'; });
-}, {threshold: 0.3});
-document.querySelectorAll('.sk-fill').forEach(b => { b.style.animationPlayState =
+cons
